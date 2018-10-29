@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TechIntellect</string>
+    <string name="register">Register</string>
+    <string name="sign_up">Sign up</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="register_login">Login</string>
+    <string name="register_fname">Full Name</string>
+    <string name="register_email">Email address</string>
+    <string name="register_pwd">Password</string>
+    <string name="register_cnfrm_pwd">Confirm Password</string>
 </resources>
