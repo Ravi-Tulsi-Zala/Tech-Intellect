@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private TextView signUp; //Added by Aravind
+    private Button loginBtn; //Added by Haritha
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //Added by Aravind ends
+
+        //Added by Haritha starts
+        loginBtn=findViewById(R.id.btn_signIn);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),HomeScreen.class);
+                startActivity(intent);
+            }
+        });
+
+        //Added by Haritha ends
     }
 
     public void forgotPassword(View view) {
