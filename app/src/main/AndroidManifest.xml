@@ -21,6 +21,10 @@
             android:theme = "@style/AppTheme"
             android:parentActivityName = ".MainActivity">
         </activity>
+        <activity android:name = ".HomeScreen"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

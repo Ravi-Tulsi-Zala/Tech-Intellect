@@ -8,4 +8,10 @@
     <string name="register_email">Email address</string>
     <string name="register_pwd">Password</string>
     <string name="register_cnfrm_pwd">Confirm Password</string>
+    <string name="Tab1">Tab1</string>
+    <string name="Tab2">Tab2</string>
+    <string name="Choosing_topic">Choose a Topic</string>
+    <string name="Choosing_difficulty">Choose Difficulty</string>
+    <string name="Choosing_mode">Choose mode</string>
+    <string name="Start_learning">Start</string>
 </resources>
