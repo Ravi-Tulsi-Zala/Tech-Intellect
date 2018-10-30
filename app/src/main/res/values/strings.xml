@@ -8,4 +8,10 @@
     <string name="register_email">Email address</string>
     <string name="register_pwd">Password</string>
     <string name="register_cnfrm_pwd">Confirm Password</string>
+    <string name="fp_forgotPasswordStr">Forgot your password?</string>
+    <string name="fp_backBtnStr">&lt; Back</string>
+    <string name="fp_NPstr">No Problem!!</string>
+    <string name="fp_enterEmailStr">Enter your email address to reset password</string>
+    <string name="fp_emailHintStr">Enter email address</string>
+    <string name="fp_submitBtnStr">Submit</string>
 </resources>
