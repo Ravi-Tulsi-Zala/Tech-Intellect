@@ -47,7 +47,8 @@
         android:layout_marginStart="0sp"
         android:layout_marginTop="80dp"
         android:background="#5c93ed"
-        android:text="@string/Start_learning" />
+        android:text="@string/Start_learning"
+        android:textColor="@android:color/background_light" />
 
 
 </LinearLayout>
