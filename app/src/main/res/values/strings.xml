@@ -20,4 +20,8 @@
     <string name="Choosing_difficulty">Choose Difficulty</string>
     <string name="Choosing_mode">Choose mode</string>
     <string name="Start_learning">Start</string>
+    <string name="cp_changePasswordStr">Change Password</string>
+    <string name="cp_oldPasswordStr">Old Password</string>
+    <string name="cp_newPasswordStr">New Password</string>
+    <string name="cp_confirmNewPwStr">Confirm New Password</string>
 </resources>
