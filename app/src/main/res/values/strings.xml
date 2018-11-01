@@ -20,4 +20,17 @@
     <string name="Choosing_difficulty">Choose Difficulty</string>
     <string name="Choosing_mode">Choose mode</string>
     <string name="Start_learning">Start</string>
+
+    <string name="hint_email">Email</string>
+    <string name="content_logo">Logo</string>
+    <string name="icon_email">Email icon</string>
+    <string name="icon_password">Password icon</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_signIn">Sign in</string>
+    <string name="link_forgotPwd">Forgot Password?</string>
+    <string name="text_signUp">New to intellect?</string>
+    <string name="link_signUp">Sign Up</string>
+    <string name="text_or">-------------------------------------  Or  --------------------------------------</string>
+    <string name="btn_signInGuest">Sign in as a Guest</string>
+
 </resources>
