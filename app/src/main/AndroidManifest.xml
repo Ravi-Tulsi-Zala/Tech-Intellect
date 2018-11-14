@@ -18,14 +18,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Registration"
-            android:label="Back"
-            android:theme = "@style/AppTheme"
-            android:parentActivityName = ".MainActivity">
-        </activity>
-        <activity android:name = ".HomeScreen"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".MainActivity">
+        <activity
+            android:name=".Registration"
+            android:label="Registration"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".HomeScreen"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:parentActivityName=".HomeScreen"
+            android:label="@string/title_activity_settings">
         </activity>
     </application>
 

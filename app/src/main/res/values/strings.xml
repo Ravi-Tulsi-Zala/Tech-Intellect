@@ -37,4 +37,11 @@
     <string name="cp_oldPasswordStr">Old Password</string>
     <string name="cp_newPasswordStr">New Password</string>
     <string name="cp_confirmNewPwStr">Confirm New Password</string>
+    <string name="menubar_item_zero">Help</string>
+    <string name="menubar_item_one">Settings</string>
+    <string name="menubar_item_two">Logout</string>
+    <string name="haptic_feedback">Vibrate</string>
+    <string name="haptic_key">haptic</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="summary_vibrate">Vibrate on wrong answer</string>
 </resources>
