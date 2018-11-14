@@ -33,4 +33,8 @@
     <string name="text_or">-------------------------------------  Or  --------------------------------------</string>
     <string name="btn_signInGuest">Sign in as a Guest</string>
 
+    <string name="cp_changePasswordStr">Change Password</string>
+    <string name="cp_oldPasswordStr">Old Password</string>
+    <string name="cp_newPasswordStr">New Password</string>
+    <string name="cp_confirmNewPwStr">Confirm New Password</string>
 </resources>
