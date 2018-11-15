@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 /*************************************************************************************************************************************************************
  Program: Registration class handling validations and registration operations.
@@ -68,7 +71,8 @@ public class Registration extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
                                         progressDialog.hide();
-                                        Toast.makeText(getApplicationContext(), "Success! Kindly login to proceed.", Toast.LENGTH_LONG).show();
+                                        saveDisplayName();
+                                        Toast.makeText(getApplicationContext(), "Success! Kindly login to proceed. ", Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                         startActivity(intent);
                                     }
@@ -136,5 +140,23 @@ public class Registration extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    //Saving display name to firebase
+    private void saveDisplayName(){
+        FirebaseUser user = auth.getCurrentUser();
+        if(user!= null){
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(full_name.getText().toString()).build();
+
+            user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        Log.d("saving display name","successful");
+                    }
+                }
+            });
+        }
     }
 }
