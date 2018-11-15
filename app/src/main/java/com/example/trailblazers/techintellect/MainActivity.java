@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,39 +61,60 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final ProgressDialog progressDialog  = ProgressDialog.show(MainActivity.this,"Please wait....","Logging in.....",true);
+              if(validateCredentials()) {
 
-                (authentication.signInWithEmailAndPassword(etEmail.getText().toString(),etPassword.getText().toString()))
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                  final ProgressDialog progressDialog = ProgressDialog.show(MainActivity.this, "Please wait....", "Logging in.....", true);
 
-                        progressDialog.dismiss();
-                        if(task.isSuccessful())
-                        {
+                  (authentication.signInWithEmailAndPassword(etEmail.getText().toString(), etPassword.getText().toString()))
+                          .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                              @Override
+                              public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            Intent intent = new Intent(getApplicationContext(),HomeScreen.class);
-                            startActivity(intent);
-                            //Toast.makeText(MainActivity.this,"Login Successful",Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            Log.e("Error",task.getException().toString());
-                            Toast.makeText(MainActivity.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
-                        }
+                                  progressDialog.dismiss();
+                                  if (task.isSuccessful()) {
+
+                                      Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                                      startActivity(intent);
+                                      //Toast.makeText(MainActivity.this,"Login Successful",Toast.LENGTH_LONG).show();
+                                  } else {
+                                      Log.e("Error", task.getException().toString());
+                                      Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                  }
 
 
-                    }
-                });
+                              }
+                          });
+              }
             }
         });
         //Added by Ravi ends
     }
 
-    public void forgotPassword(View view) {
+    boolean isEmail(EditText text){
+        CharSequence input = text.getText().toString();
+        return (!TextUtils.isEmpty(input) && Patterns.EMAIL_ADDRESS.matcher(input).matches());
     }
 
-    public void signUp(View view) {
+    boolean isEmpty(EditText text){
+        CharSequence input = text.getText().toString();
+        return TextUtils.isEmpty(input);
+    }
+
+
+    private boolean validateCredentials()
+    {
+
+        if(!isEmail(etEmail)){
+            etEmail.setError("Please enter a valid email address ...");
+            return false;
+        }
+        if(isEmpty(etPassword)){
+            Toast.makeText(getApplicationContext(), "Please provide a password....", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+        return true;
 
     }
 
