@@ -5,12 +5,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private TextView signUp; //Added by Aravind
     private Button btnLogin; //Added by Haritha
+
+    private EditText etEmail; //Added By Ravi
+    private EditText etPassword;//Added By Ravi
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //Added by Aravind ends
+
+        //Added by Ravi Starts
+        etEmail = findViewById(R.id.et_email);
+        etPassword = findViewById(R.id.et_password);
+
+            
+
+        //Added by Ravi Ends
+
 
         //Added by Haritha starts
         btnLogin = findViewById(R.id.btn_signIn);
