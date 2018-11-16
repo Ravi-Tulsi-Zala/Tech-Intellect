@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText etEmail;
     private EditText etPassword;
     private FirebaseAuth authentication;
+    private Button btnGuest;
     //Added by Ravi Ends
 
     @Override
@@ -51,10 +52,19 @@ public class MainActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.et_password);
         authentication = FirebaseAuth.getInstance();
 
-        //Added by Ravi Ends
+        btnGuest = findViewById(R.id.btn_guest);
 
 
-        //Added by Ravi starts
+        btnGuest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                startActivity(intent);
+
+            }
+        });
+
         btnLogin = findViewById(R.id.btn_signIn);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
