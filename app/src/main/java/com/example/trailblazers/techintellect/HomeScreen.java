@@ -1,5 +1,7 @@
 package com.example.trailblazers.techintellect;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -7,12 +9,15 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInteractionListener , Tab2.OnFragmentInteractionListener {
 
@@ -77,7 +82,30 @@ public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInte
                 startActivityForResult(settings,1);
                 break;
             case R.id.action_settings_logout:
+                //Added by Haritha for logout functionality - Starts
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Are you sure you want to Logout?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                FirebaseAuth.getInstance().signOut();
+                                finish();
+                                Toast.makeText(getApplicationContext(), "Logged out successfully! ", Toast.LENGTH_LONG).show();
+                                Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
+                                startActivity(mainActivity);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
                 break;
+                //Added by Haritha for logout functionality - Ends
             default:
 
 
