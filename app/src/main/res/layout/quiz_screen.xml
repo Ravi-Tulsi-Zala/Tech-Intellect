@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Easy"
+        android:text="@string/quiz_difficultyStr"
         android:layout_marginTop="20dp"
         android:textSize="20sp" />
 
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Quiz 1: NLP"
+        android:text="@string/quiz_nameStr"
         android:padding="15sp"
         android:textSize="30sp" />
 
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:text="Q1. One of the main challenges in NLP is"
+        android:text="@string/quiz_questionMain"
         android:textSize="25sp" />
 
     <RadioGroup
@@ -52,7 +52,7 @@
             android:checked="false"
             android:layout_marginTop="15dp"
             android:textSize="22sp"
-            android:text="Handling Ambiguity of Sentences"/>
+            android:text="@string/quiz_optionAstr"/>
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/optionB"
@@ -61,7 +61,7 @@
             android:checked="false"
             android:layout_marginTop="15dp"
             android:textSize="22sp"
-            android:text="Handling Tokenization"/>
+            android:text="@string/quiz_optionBstr"/>
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/optionC"
@@ -70,7 +70,7 @@
             android:checked="false"
             android:layout_marginTop="15dp"
             android:textSize="22sp"
-            android:text="Handling POS-Tagging"/>
+            android:text="@string/quiz_optionCstr"/>
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/optionD"
@@ -79,7 +79,7 @@
             android:checked="false"
             android:layout_marginTop="15dp"
             android:textSize="22sp"
-            android:text="All of the above"/>
+            android:text="@string/quiz_optionDstr"/>
 
     </RadioGroup>
 
@@ -94,7 +94,7 @@
             android:gravity="center"
             android:id="@+id/submitAnswerBtn"
             android:background="#5c93ed"
-            android:text="@string/fp_submitBtnStr"
+            android:text="@string/submitBtnStr"
             android:textColor="#fff"
             android:layout_marginLeft="150dp"/>
 
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/nextQuestionBtn"
             android:background="#5c93ed"
-            android:text="Next"
+            android:text="@string/quiz_nextBtnStr"
             android:textColor="#fff"
             android:layout_marginLeft="30dp"/>
 
@@ -115,7 +115,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:textSize="25sp"
-        android:text="Sorry, Answer is incorrect!!"
+        android:text="@string/quiz_feedbackStr"
         android:textColor="#EA4335"/>
 
 </LinearLayout>
