@@ -8,16 +8,25 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+/*************************************************************************************************************************************************************
+ Program: This is the home screen of our application consisting of a tab layout with two tabs for learn and dashboard.
+ Author: Haritha
+ Date of creation: 09-Nov-2018
+ *************************************************************************************************************************************************************/
+
 
 public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInteractionListener , Tab2.OnFragmentInteractionListener {
 
@@ -105,7 +114,17 @@ public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInte
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
                 break;
-                //Added by Haritha for logout functionality - Ends
+                //Handling the back button (in task bar) logout
+            case android.R.id.home:
+                FirebaseAuth.getInstance().signOut();
+                ActivityCompat.finishAffinity(HomeScreen.this);
+                Toast.makeText(HomeScreen.this, "Logged out successfully! ", Toast.LENGTH_LONG).show();
+                Intent mainActivity1 = new Intent(HomeScreen.this,MainActivity.class);
+                mainActivity1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                mainActivity1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(mainActivity1);
+                break;
+            //Added by Haritha for logout functionality - Ends
             default:
 
 
@@ -130,4 +149,18 @@ public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInte
     }
 
     //Added by Aravind for settings menu - Ends
+
+    //Added by Haritha for log out on back button - Starts
+    @Override
+    public void onBackPressed() {
+        FirebaseAuth.getInstance().signOut();
+        ActivityCompat.finishAffinity(HomeScreen.this);
+        Toast.makeText(HomeScreen.this, "Logged out successfully! ", Toast.LENGTH_LONG).show();
+        Intent mainActivity2 = new Intent(HomeScreen.this,MainActivity.class);
+        mainActivity2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mainActivity2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(mainActivity2);
+        super.onBackPressed();
+    }
+    //Added by Haritha for log out on back button - Ends
 }
