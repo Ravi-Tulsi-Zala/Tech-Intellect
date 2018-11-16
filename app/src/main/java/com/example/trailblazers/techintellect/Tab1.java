@@ -1,6 +1,7 @@
 package com.example.trailblazers.techintellect;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +39,8 @@ public class Tab1 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button btnTakeQuiz;
 
     private OnFragmentInteractionListener mListener;
 
@@ -103,6 +107,16 @@ public class Tab1 extends Fragment {
         ArrayAdapter<String> arrayAdapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLIST_MODE);
         MaterialBetterSpinner materialDesignSpinnerMode = (MaterialBetterSpinner) view.findViewById(R.id.mode_spinner);
         materialDesignSpinnerMode.setAdapter(arrayAdapter3);
+
+        btnTakeQuiz =view.findViewById(R.id.btnTakeQuiz);
+
+        btnTakeQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),QuizScreen.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

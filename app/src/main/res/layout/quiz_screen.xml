@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Author - Yash Modi
+    Created on 16 November 2018
+    -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/difficultyModeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Easy"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/topicNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Quiz 1: NLP"
+        android:padding="15sp"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/questionMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="Q1. One of the main challenges in NLP is"
+        android:textSize="25sp" />
+
+    <RadioGroup
+        android:id="@+id/radioOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center">
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/optionA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:layout_marginTop="15dp"
+            android:textSize="22sp"
+            android:text="Handling Ambiguity of Sentences"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/optionB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:layout_marginTop="15dp"
+            android:textSize="22sp"
+            android:text="Handling Tokenization"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/optionC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:layout_marginTop="15dp"
+            android:textSize="22sp"
+            android:text="Handling POS-Tagging"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/optionD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:layout_marginTop="15dp"
+            android:textSize="22sp"
+            android:text="All of the above"/>
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/submitAnswerBtn"
+            android:background="#5c93ed"
+            android:text="@string/fp_submitBtnStr"
+            android:textColor="#fff"
+            android:layout_marginLeft="150dp"/>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/nextQuestionBtn"
+            android:background="#5c93ed"
+            android:text="Next"
+            android:textColor="#fff"
+            android:layout_marginLeft="30dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:text="Sorry, Answer is incorrect!!"
+        android:textColor="#EA4335"/>
+
+</LinearLayout>
