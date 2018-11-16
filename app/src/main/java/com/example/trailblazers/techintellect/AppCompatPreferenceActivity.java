@@ -130,4 +130,15 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    //Handling default android back button
+    public void onBackPressed() {
+        boolean data = SettingsActivity.isVibrateSwitchOn;
+        Intent intent = new Intent();
+        intent.putExtra("switchVal", data);
+        this.setResult(RESULT_OK, intent);
+        this.finish();
+        super.onBackPressed();
+    }
 }
