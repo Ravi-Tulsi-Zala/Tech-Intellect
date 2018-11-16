@@ -82,7 +82,13 @@ public class Tab1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tab1, container, false);
 
         welcome = view.findViewById(R.id.welcome);
-        welcome.setText("Welcome " +firebaseUser.getDisplayName());
+        if(firebaseUser != null){
+            welcome.setText("Welcome " +firebaseUser.getDisplayName());
+        }
+        else{
+            welcome.setText("Welcome Guest");
+        }
+
         String[] SPINNERLIST = {"R Programming", "Natural Language Processing", "Google Go", "Computer Science Acronyms"};
         ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLIST);
         MaterialBetterSpinner materialDesignSpinner = (MaterialBetterSpinner) view.findViewById(R.id.quiz_topics_spinner);
