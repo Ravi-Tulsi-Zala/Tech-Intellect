@@ -16,7 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/quiz_difficultyStr"
         android:layout_marginTop="20dp"
         android:textSize="20sp" />
 
@@ -25,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/quiz_nameStr"
         android:padding="15sp"
         android:textSize="30sp" />
 
@@ -33,10 +31,10 @@
         android:id="@+id/questionMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:text="@string/quiz_questionMain"
-        android:textSize="25sp" />
+        android:gravity="center_horizontal"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="20dp" />
 
     <RadioGroup
         android:id="@+id/radioOptions"
@@ -51,8 +49,7 @@
             android:layout_height="wrap_content"
             android:checked="false"
             android:layout_marginTop="15dp"
-            android:textSize="22sp"
-            android:text="@string/quiz_optionAstr"/>
+            android:textSize="20dp" />
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/optionB"
@@ -60,8 +57,7 @@
             android:layout_height="wrap_content"
             android:checked="false"
             android:layout_marginTop="15dp"
-            android:textSize="22sp"
-            android:text="@string/quiz_optionBstr"/>
+            android:textSize="20dp" />
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/optionC"
@@ -69,8 +65,7 @@
             android:layout_height="wrap_content"
             android:checked="false"
             android:layout_marginTop="15dp"
-            android:textSize="22sp"
-            android:text="@string/quiz_optionCstr"/>
+            android:textSize="20dp" />
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/optionD"
@@ -78,8 +73,7 @@
             android:layout_height="wrap_content"
             android:checked="false"
             android:layout_marginTop="15dp"
-            android:textSize="22sp"
-            android:text="@string/quiz_optionDstr"/>
+            android:textSize="20dp" />
 
     </RadioGroup>
 
@@ -89,33 +83,33 @@
         android:layout_marginTop="25dp">
 
         <Button
+            android:id="@+id/submitAnswerBtn"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:id="@+id/submitAnswerBtn"
+            android:layout_marginLeft="85dp"
             android:background="#5c93ed"
+            android:gravity="center"
             android:text="@string/submitBtnStr"
-            android:textColor="#fff"
-            android:layout_marginLeft="150dp"/>
+            android:textColor="#fff" />
 
         <Button
+            android:id="@+id/quitBtn"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:id="@+id/nextQuestionBtn"
-            android:background="#5c93ed"
-            android:text="@string/quiz_nextBtnStr"
-            android:textColor="#fff"
-            android:layout_marginLeft="30dp"/>
+            android:layout_marginLeft="30dp"
+            android:background="@android:color/holo_red_dark"
+            android:text="@string/quit_test"
+            android:textColor="#fff" />
 
     </LinearLayout>
 
     <TextView
+        android:id="@+id/correctAnswer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:textSize="25sp"
-        android:text="@string/quiz_feedbackStr"
-        android:textColor="#EA4335"/>
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="20dp" />
 
 </LinearLayout>

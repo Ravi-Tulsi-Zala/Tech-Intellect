@@ -93,19 +93,19 @@ public class Tab1 extends Fragment {
             welcome.setText("Welcome Guest");
         }
 
-        String[] SPINNERLIST = {"R Programming", "Natural Language Processing", "Google Go", "Computer Science Acronyms"};
+        final String[] SPINNERLIST = {"R Programming", "Natural Language Processing", "Google Go", "Computer Science Acronyms"};
         ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLIST);
-        MaterialBetterSpinner materialDesignSpinner = (MaterialBetterSpinner) view.findViewById(R.id.quiz_topics_spinner);
+        final MaterialBetterSpinner materialDesignSpinner = (MaterialBetterSpinner) view.findViewById(R.id.quiz_topics_spinner);
         materialDesignSpinner.setAdapter(arrayAdapter1);
 
         String[] SPINNERLIST_DIFFICULTY_LEVEL = {"Easy", "Medium", "Hard"};
         ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLIST_DIFFICULTY_LEVEL);
-        MaterialBetterSpinner materialDesignSpinnerDiffLvl = (MaterialBetterSpinner) view.findViewById(R.id.difficulty_level_spinner);
+        final MaterialBetterSpinner materialDesignSpinnerDiffLvl = (MaterialBetterSpinner) view.findViewById(R.id.difficulty_level_spinner);
         materialDesignSpinnerDiffLvl.setAdapter(arrayAdapter2);
 
         String[] SPINNERLIST_MODE = {"Timed", "Endless"};
         ArrayAdapter<String> arrayAdapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLIST_MODE);
-        MaterialBetterSpinner materialDesignSpinnerMode = (MaterialBetterSpinner) view.findViewById(R.id.mode_spinner);
+        final MaterialBetterSpinner materialDesignSpinnerMode = (MaterialBetterSpinner) view.findViewById(R.id.mode_spinner);
         materialDesignSpinnerMode.setAdapter(arrayAdapter3);
 
         btnTakeQuiz =view.findViewById(R.id.btnTakeQuiz);
@@ -114,6 +114,16 @@ public class Tab1 extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),QuizScreen.class);
+                //Added by Aravind starts
+                String topic = materialDesignSpinner.getText().toString();
+                String level = materialDesignSpinnerDiffLvl.getText().toString();
+                String mode = materialDesignSpinnerMode.getText().toString();
+                Bundle bundle = new Bundle();
+                bundle.putString("topic", topic);
+                bundle.putString("level", level);
+                bundle.putString("mode", mode);
+                intent.putExtras(bundle);
+                //Added by Aravind ends
                 startActivity(intent);
             }
         });

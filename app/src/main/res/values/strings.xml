@@ -54,5 +54,6 @@
     <string name="quiz_optionDstr">All of the above</string>
     <string name="quiz_nextBtnStr">Next</string>
     <string name="quiz_feedbackStr">Sorry, Answer is incorrect!!</string>
+    <string name="quit_test">Quit</string>
 
 </resources>
