@@ -116,14 +116,28 @@ public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInte
                 break;
                 //Handling the back button (in task bar) logout
             case android.R.id.home:
-                FirebaseAuth.getInstance().signOut();
-                ActivityCompat.finishAffinity(HomeScreen.this);
-                Toast.makeText(HomeScreen.this, "Logged out successfully! ", Toast.LENGTH_LONG).show();
-                Intent mainActivity1 = new Intent(HomeScreen.this,MainActivity.class);
-                mainActivity1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                mainActivity1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(mainActivity1);
-                break;
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(HomeScreen.this);
+                builder2.setMessage("Going back would end the session. Are you sure you want to proceed?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                FirebaseAuth.getInstance().signOut();
+                                finish();
+                                Toast.makeText(getApplicationContext(), "Logged out successfully! ", Toast.LENGTH_LONG).show();
+                                Intent mainActivity1 = new Intent(getApplicationContext(),MainActivity.class);
+                                startActivity(mainActivity1);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog2 = builder2.create();
+                alertDialog2.show();
+                return true;
             //Added by Haritha for logout functionality - Ends
             default:
 
