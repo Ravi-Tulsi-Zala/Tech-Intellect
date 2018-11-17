@@ -153,14 +153,27 @@ public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInte
     //Added by Haritha for log out on back button - Starts
     @Override
     public void onBackPressed() {
-        FirebaseAuth.getInstance().signOut();
-        ActivityCompat.finishAffinity(HomeScreen.this);
-        Toast.makeText(HomeScreen.this, "Logged out successfully! ", Toast.LENGTH_LONG).show();
-        Intent mainActivity2 = new Intent(HomeScreen.this,MainActivity.class);
-        mainActivity2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        mainActivity2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(mainActivity2);
-        super.onBackPressed();
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+        builder2.setMessage("Going back would end the session. Are you sure you want to proceed?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseAuth.getInstance().signOut();
+                        finish();
+                        Toast.makeText(getApplicationContext(), "Logged out successfully! ", Toast.LENGTH_LONG).show();
+                        Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(mainActivity);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog2 = builder2.create();
+        alertDialog2.show();
     }
     //Added by Haritha for log out on back button - Ends
 }
