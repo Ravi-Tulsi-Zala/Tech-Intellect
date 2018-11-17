@@ -134,51 +134,68 @@ public class QuizScreen extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // get selected radio button from radioGroup
-                int selectedId = radioGroup.getCheckedRadioButtonId();
-
-                // find the radiobutton by returned id
-                radioButton = (RadioButton) findViewById(selectedId);
-
-                //when the user answer is wrong
-                if(!radioButton.getText().toString().equalsIgnoreCase(correctAnswerValue)){
-                    correct_answer.setText("Answer: "+correctAnswerValue);
-                    wrongly_answered.add(dummyQuestionNumber); //adding wrong question to the list - yet to implement the logic
-                    radioGroup.clearCheck();
-                    Runnable r = new Runnable() {
-                        @Override
-                        public void run(){
-                            correct_answer.setText(null);
-                            if(questionNumber < maxQuestions)
-                               performQuiz(); //loading the next question
-                            else
-                                Toast.makeText(getApplicationContext(), "Quiz has been completed! ", Toast.LENGTH_LONG).show();
-                        }
-                    };
-                    Handler h = new Handler();
-                    h.postDelayed(r, 4000); // <-- the "4000" is the delay time in miliseconds.
-
+                if (radioGroup.getCheckedRadioButtonId() == -1)
+                {
+                    // no radio buttons are checked
+                    AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(QuizScreen.this);
+                    dlgAlert.setMessage("Please select your answer!");
+                    dlgAlert.setTitle("Alert");
+                    dlgAlert.setPositiveButton("Ok", null);
+                    dlgAlert.setCancelable(true);
+                    dlgAlert.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //dismiss the dialog
+                                    dialog.cancel();
+                                }
+                            });
+                    dlgAlert.create().show();
                 }
-                //when the answer is correct
                 else{
-                    correct_answer.setText("You got it correct!");
-                    radioGroup.clearCheck();
-                    Runnable r = new Runnable() {
-                        @Override
-                        public void run(){
-                            correct_answer.setText(null);
-                            if(questionNumber < maxQuestions)
-                                performQuiz();  //loading the next question
-                            else
-                                Toast.makeText(getApplicationContext(), "Quiz has been completed! ", Toast.LENGTH_LONG).show();
-                        }
-                    };
-                    Handler h = new Handler();
-                    h.postDelayed(r, 4000); // <-- the "4000" is the delay time in miliseconds.
+                    submit.setEnabled(false);
+                    // get selected radio button from radioGroup
+                    int selectedId = radioGroup.getCheckedRadioButtonId();
+
+                    // find the radiobutton by returned id
+                    radioButton = (RadioButton) findViewById(selectedId);
+
+                    //when the user answer is wrong
+                    if(!radioButton.getText().toString().equalsIgnoreCase(correctAnswerValue)){
+                        correct_answer.setText("Answer: "+correctAnswerValue);
+                        wrongly_answered.add(dummyQuestionNumber); //adding wrong question to the list - yet to implement the logic
+                        radioGroup.clearCheck();
+                        Runnable r = new Runnable() {
+                            @Override
+                            public void run(){
+                                correct_answer.setText(null);
+                                if(questionNumber < maxQuestions)
+                                    performQuiz(); //loading the next question
+                                else
+                                    Toast.makeText(getApplicationContext(), "Quiz has been completed! ", Toast.LENGTH_LONG).show();
+                            }
+                        };
+                        Handler h = new Handler();
+                        h.postDelayed(r, 4000); // <-- the "4000" is the delay time in miliseconds.
+
+                    }
+                    //when the answer is correct
+                    else{
+                        correct_answer.setText("You got it correct!");
+                        radioGroup.clearCheck();
+                        Runnable r = new Runnable() {
+                            @Override
+                            public void run(){
+                                correct_answer.setText(null);
+                                if(questionNumber < maxQuestions)
+                                    performQuiz();  //loading the next question
+                                else
+                                    Toast.makeText(getApplicationContext(), "Quiz has been completed! ", Toast.LENGTH_LONG).show();
+                            }
+                        };
+                        Handler h = new Handler();
+                        h.postDelayed(r, 4000); // <-- the "4000" is the delay time in miliseconds.
+                    }
                 }
-
-
             }
         });
         //Ending the quiz when the quit button is pressed
@@ -211,6 +228,7 @@ public class QuizScreen extends AppCompatActivity {
 
     //Method for fetching the JSON values from firebase and displaying it in the UI
     public void performQuiz(){
+        submit.setEnabled(true);
         questionRef = new Firebase(firebaseUrl+""+questionNumber+"/Question");
         questionRef.addValueEventListener(new ValueEventListener() {
             @Override
