@@ -55,5 +55,9 @@
     <string name="quiz_nextBtnStr">Next</string>
     <string name="quiz_feedbackStr">Sorry, Answer is incorrect!!</string>
     <string name="quit_test">Quit</string>
+    <string name="quiz_completed">You have successfully completed the Quiz!</string>
+    <string name="main_menu_button">Yes, take me home!</string>
+    <string name="main_menu">Want to learn more?</string>
+    <string name="congrats">Congratulations!</string>
 
 </resources>
