@@ -1,0 +1,22 @@
+Question,Answer choice 1,Answer choice 2,Answer choice 3,Answer choice 4 ,Correct answer
+Which one is true for Go language?,support method overloading,support pointer arithmetics,support generic programming,None of the above,None of the above
+What verb should we use with fmt.Printf to print boolean?,%v,%t,%b,%s,%t
+What characters is go fmt command using for indent?,4 spaces,2 spaces,tab character,it’s configurable,tab character
+Is it possible to make package content directly accessible without need to be preceed by “fmt.”?,Yes. import “fmt”,Yes. Import_ “fmt”,Yes. Import. “fmt”,No,Yes. Import. “fmt”
+How can we change the value of GOMAXPROCS in Go?,Via environment variable GOMAXPROCS,In the Code,Both A and B,Impossible as it’s equal to the number of available CPUs,Both A and B
+On what data types you can use “for - range” statement?,"array, slice, map","array, slice, map, string","slice, map, string","slice, map","array, slice, map, string"
+Which of the following is correct about maps in Go?,"Given a key and a value, you can strore the value in a Map object.","After value is stored, you can retrieve it by using its key.",Both of the above.,None of the above.,Both of the above
+Which function is used to copy a slice?,cp(),copy(),rep(),cpy(),copy()
+Which one of the following is correct?,const Pi = 3.14,const Pi = math.Pi ,Both A and B,None of the above,Both A and B
+How do you access command line arguments passed to a Go program?,os.Args variables,Can not get command line variables,Via the | character,None of the above,os.Args variables
+How you can write multi-line strings in Go?,Same as any string,Raw string literal,Use quotation marks,None of the above,Raw string literal
+How is a pointer is represented in Go?,With the asterisk * character,With the > character,With the -> character,With the => character,With the asterisk * character
+How many Looping constructs are present in Go?,0,1,2,3,1
+Go language,Supports inheritance,is Case sensitive,Supports method overloading,Can't declare multiple types of variables in single declaration,is Case sensitive
+How are constants declared in Go?,const keyword,constant keyword,constants keyword,There are no constants in Go,const keyword
+What are the advantages of GO?,Functions are first class objects in GO,GO has garbage collection,Strings and Maps are built into the language,All of the above,All of the above
+What's the name of the collection involved in the language?,Portable collection,"Direct collection
+
+",Garbage collection,Static collection,Garbage collection
+What causes the loop to skip the remainder of its body and immediately retest its condition prior to reiterating in Go?,Break,Continue,goto,switch,Continue
+What are channels in Go language,Buffered,Unbuffered,A and B,None of the above,
