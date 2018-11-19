@@ -30,7 +30,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInteractionListener , Tab2.OnFragmentInteractionListener {
 
-    Boolean vibrateSwitchOn; //added by Aravind
+    public static Boolean vibrateSwitchOn; //added by Aravind
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

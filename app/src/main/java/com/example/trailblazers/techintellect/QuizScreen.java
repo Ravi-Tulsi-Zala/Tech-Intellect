@@ -5,11 +5,12 @@
  */
 package com.example.trailblazers.techintellect;
 
-import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +57,7 @@ public class QuizScreen extends AppCompatActivity {
     private String level;
     private String mode;
     private String firebaseUrl;
+    private Vibrator vibe;
     List<Integer> wrongly_answered = new ArrayList<Integer>();
     //Added by Aravind - Ends
     @Override
@@ -116,6 +119,8 @@ public class QuizScreen extends AppCompatActivity {
         level = bundle.getString("level");
         mode = bundle.getString("mode");
 
+        vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
         questionTextView = findViewById(R.id.questionMain);
         option1 = findViewById(R.id.optionA);
         option2 = findViewById(R.id.optionB);
@@ -161,6 +166,9 @@ public class QuizScreen extends AppCompatActivity {
 
                 //when the user answer is wrong
                 if(!radioButton.getText().toString().equalsIgnoreCase(correctAnswerValue)){
+                    boolean isVibrate = SettingsActivity.isVibrateSwitchOn;
+                    if(isVibrate)
+                     vibe.vibrate(500);
                     correct_answer.setTextColor(0xFFFF0000);
                     correct_answer.setText("Answer: "+correctAnswerValue);
                     wrongly_answered.add(dummyQuestionNumber); //adding wrong question to the list - yet to implement the logic
