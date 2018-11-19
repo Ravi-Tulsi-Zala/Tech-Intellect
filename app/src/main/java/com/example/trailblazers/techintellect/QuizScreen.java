@@ -331,14 +331,15 @@ public class QuizScreen extends AppCompatActivity {
     //This method builds the firebase URL based on the user's selection in the home screen
     public String buildUrl(String topic, String level){
         //Acronyms url
+        String Url;
         if(topic.equalsIgnoreCase("Computer Science Acronyms")){
             if(level.equalsIgnoreCase("Easy")){
-                String url = "https://tech-intellect-3dd39.firebaseio.com/acronyms_easy/";
-                return url;
+                Url = "https://tech-intellect-3dd39.firebaseio.com/acronyms_easy/";
+                return Url;
             }
             if(level.equalsIgnoreCase("Medium")){
-                String url = "https://tech-intellect-3dd39.firebaseio.com/acronyms_medium/";
-                return url;
+                Url = "https://tech-intellect-3dd39.firebaseio.com/acronyms_medium/";
+                return Url;
             }
             if(level.equalsIgnoreCase("Hard")){
 
@@ -347,12 +348,12 @@ public class QuizScreen extends AppCompatActivity {
         // Google Go Url
         else if(topic.equalsIgnoreCase("Google Go")){
             if(level.equalsIgnoreCase("Easy")){
-                String url = "https://tech-intellect-3dd39.firebaseio.com/easy_go/";
-                return url;
+                Url = "https://tech-intellect-3dd39.firebaseio.com/easy_go/";
+                return Url;
             }
             if(level.equalsIgnoreCase("Medium")){
-                String url = "https://tech-intellect-3dd39.firebaseio.com/medium_go/";
-                return url;
+                Url = "https://tech-intellect-3dd39.firebaseio.com/medium_go/";
+                return Url;
             }
             if(level.equalsIgnoreCase("Hard")){
 
