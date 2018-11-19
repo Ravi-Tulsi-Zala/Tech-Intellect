@@ -161,6 +161,7 @@ public class QuizScreen extends AppCompatActivity {
 
                 //when the user answer is wrong
                 if(!radioButton.getText().toString().equalsIgnoreCase(correctAnswerValue)){
+                    correct_answer.setTextColor(0xFFFF0000);
                     correct_answer.setText("Answer: "+correctAnswerValue);
                     wrongly_answered.add(dummyQuestionNumber); //adding wrong question to the list - yet to implement the logic
                     radioGroup.clearCheck();
@@ -186,6 +187,7 @@ public class QuizScreen extends AppCompatActivity {
                 }
                 //when the answer is correct
                 else{
+                    correct_answer.setTextColor(0xFF00FF00);
                     correct_answer.setText("You got it correct!");
                     radioGroup.clearCheck();
                     Runnable r = new Runnable() {
