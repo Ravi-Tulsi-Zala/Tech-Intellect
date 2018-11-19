@@ -1,6 +1,7 @@
 package com.example.trailblazers.techintellect;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,7 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 
@@ -25,12 +30,17 @@ public class Tab1 extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private TextView welcome; //Added by Haritha
 
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button btnTakeQuiz;
 
     private OnFragmentInteractionListener mListener;
 
@@ -70,21 +80,53 @@ public class Tab1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+
         View view = inflater.inflate(R.layout.fragment_tab1, container, false);
-        String[] SPINNERLIST = {"R Programming", "Natural Language Processing", "Google Go", "Computer Science Acronyms"};
+
+        welcome = view.findViewById(R.id.welcome);
+        if(firebaseUser != null){
+            welcome.setText("Welcome " +firebaseUser.getDisplayName());
+        }
+        else{
+            welcome.setText("Welcome Guest");
+        }
+
+        final String[] SPINNERLIST = {"R Programming", "Natural Language Processing", "Google Go", "Computer Science Acronyms"};
         ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLIST);
-        MaterialBetterSpinner materialDesignSpinner = (MaterialBetterSpinner) view.findViewById(R.id.quiz_topics_spinner);
+        final MaterialBetterSpinner materialDesignSpinner = (MaterialBetterSpinner) view.findViewById(R.id.quiz_topics_spinner);
         materialDesignSpinner.setAdapter(arrayAdapter1);
 
         String[] SPINNERLIST_DIFFICULTY_LEVEL = {"Easy", "Medium", "Hard"};
         ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLIST_DIFFICULTY_LEVEL);
-        MaterialBetterSpinner materialDesignSpinnerDiffLvl = (MaterialBetterSpinner) view.findViewById(R.id.difficulty_level_spinner);
+        final MaterialBetterSpinner materialDesignSpinnerDiffLvl = (MaterialBetterSpinner) view.findViewById(R.id.difficulty_level_spinner);
         materialDesignSpinnerDiffLvl.setAdapter(arrayAdapter2);
 
         String[] SPINNERLIST_MODE = {"Timed", "Endless"};
         ArrayAdapter<String> arrayAdapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLIST_MODE);
-        MaterialBetterSpinner materialDesignSpinnerMode = (MaterialBetterSpinner) view.findViewById(R.id.mode_spinner);
+        final MaterialBetterSpinner materialDesignSpinnerMode = (MaterialBetterSpinner) view.findViewById(R.id.mode_spinner);
         materialDesignSpinnerMode.setAdapter(arrayAdapter3);
+
+        btnTakeQuiz =view.findViewById(R.id.btnTakeQuiz);
+
+        btnTakeQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),QuizScreen.class);
+                //Added by Aravind starts
+                String topic = materialDesignSpinner.getText().toString();
+                String level = materialDesignSpinnerDiffLvl.getText().toString();
+                String mode = materialDesignSpinnerMode.getText().toString();
+                Bundle bundle = new Bundle();
+                bundle.putString("topic", topic);
+                bundle.putString("level", level);
+                bundle.putString("mode", mode);
+                intent.putExtras(bundle);
+                //Added by Aravind ends
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

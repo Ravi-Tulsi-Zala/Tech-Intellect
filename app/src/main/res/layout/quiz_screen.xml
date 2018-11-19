@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Author - Yash Modi
+    Created on 16 November 2018
+    -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/difficultyModeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/topicNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="15sp"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/questionMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="20dp" />
+
+    <RadioGroup
+        android:id="@+id/radioOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center">
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/optionA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:layout_marginTop="15dp"
+            android:textSize="20dp" />
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/optionB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:layout_marginTop="15dp"
+            android:textSize="20dp" />
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/optionC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:layout_marginTop="15dp"
+            android:textSize="20dp" />
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/optionD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:layout_marginTop="15dp"
+            android:textSize="20dp" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
+
+        <Button
+            android:id="@+id/submitAnswerBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="85dp"
+            android:background="#5c93ed"
+            android:gravity="center"
+            android:text="@string/submitBtnStr"
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/quitBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:background="@android:color/holo_red_dark"
+            android:text="@string/quit_test"
+            android:textColor="#fff" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/correctAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="20dp" />
+
+</LinearLayout>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "522867774187",
+    "firebase_url": "https://tech-intellect-3dd39.firebaseio.com",
+    "project_id": "tech-intellect-3dd39",
+    "storage_bucket": "tech-intellect-3dd39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522867774187:android:04b462eb3df7f7f8",
+        "android_client_info": {
+          "package_name": "com.example.trailblazers.techintellect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522867774187-2q6m333bl71vmt2dov4e3t0vtujd80mc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlPZdPImWH11JUnoAB-y27gV6sii17IbI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

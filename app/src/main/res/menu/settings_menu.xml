@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--Menu items for the 3 vertical dots on the task bar -->
+    <item
+        android:id="@+id/action_help"
+        android:title="@string/menubar_item_zero"
+        app:showAsAction = "never">
+    </item>
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/menubar_item_one"
+        app:showAsAction = "never">
+    </item>
+    <item
+        android:id="@+id/action_settings_logout"
+        android:title="@string/menubar_item_two"
+        app:showAsAction = "never">
+    </item>
+</menu>

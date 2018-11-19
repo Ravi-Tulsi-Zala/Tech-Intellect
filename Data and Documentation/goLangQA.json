@@ -1,0 +1,154 @@
+[
+  {
+    "Question": "Which one is true for Go language?",
+    "Answer choice 1": "support method overloading",
+    "Answer choice 2": "support pointer arithmetics",
+    "Answer choice 3": "support generic programming",
+    "Answer choice 4": "None of the above",
+    "Correct answer": "None of the above"
+  },
+  {
+    "Question": "What verb should we use with fmt.Printf to print boolean?",
+    "Answer choice 1": "%v",
+    "Answer choice 2": "%t",
+    "Answer choice 3": "%b",
+    "Answer choice 4": "%s",
+    "Correct answer": "%t"
+  },
+  {
+    "Question": "What characters is go fmt command using for indent?",
+    "Answer choice 1": "4 spaces",
+    "Answer choice 2": "2 spaces",
+    "Answer choice 3": "tab character",
+    "Answer choice 4": "it%uFFFDs configurable",
+    "Correct answer": "tab character"
+  },
+  {
+    "Question": "Is it possible to make package content directly accessible without need to be preceed by %uFFFDfmt.%uFFFD?",
+    "Answer choice 1": "Yes. import %uFFFDfmt%uFFFD",
+    "Answer choice 2": "Yes. Import_ %uFFFDfmt%uFFFD",
+    "Answer choice 3": "Yes. Import. %uFFFDfmt%uFFFD",
+    "Answer choice 4": "No",
+    "Correct answer": "Yes. Import. %uFFFDfmt%uFFFD"
+  },
+  {
+    "Question": "How can we change the value of GOMAXPROCS in Go?",
+    "Answer choice 1": "Via environment variable GOMAXPROCS",
+    "Answer choice 2": "In the Code",
+    "Answer choice 3": "Both A and B",
+    "Answer choice 4": "Impossible as it%uFFFDs equal to the number of available CPUs",
+    "Correct answer": "Both A and B"
+  },
+  {
+    "Question": "On what data types you can use %uFFFDfor - range%uFFFD statement?",
+    "Answer choice 1": "array, slice, map",
+    "Answer choice 2": "array, slice, map, string",
+    "Answer choice 3": "slice, map, string",
+    "Answer choice 4": "slice, map",
+    "Correct answer": "array, slice, map, string"
+  },
+  {
+    "Question": "Which of the following is correct about maps in Go?",
+    "Answer choice 1": "Given a key and a value, you can strore the value in a Map object.",
+    "Answer choice 2": "After value is stored, you can retrieve it by using its key.",
+    "Answer choice 3": "Both of the above.",
+    "Answer choice 4": "None of the above.",
+    "Correct answer": "Both of the above"
+  },
+  {
+    "Question": "Which function is used to copy a slice?",
+    "Answer choice 1": "cp()",
+    "Answer choice 2": "copy()",
+    "Answer choice 3": "rep()",
+    "Answer choice 4": "cpy()",
+    "Correct answer": "copy()"
+  },
+  {
+    "Question": "Which one of the following is correct?",
+    "Answer choice 1": "const Pi = 3.14",
+    "Answer choice 2": "const Pi = math.Pi",
+    "Answer choice 3": "Both A and B",
+    "Answer choice 4": "None of the above",
+    "Correct answer": "Both A and B"
+  },
+  {
+    "Question": "How do you access command line arguments passed to a Go program?",
+    "Answer choice 1": "os.Args variables",
+    "Answer choice 2": "Can not get command line variables",
+    "Answer choice 3": "Via the | character",
+    "Answer choice 4": "None of the above",
+    "Correct answer": "os.Args variables"
+  },
+  {
+    "Question": "How you can write multi-line strings in Go?",
+    "Answer choice 1": "Same as any string",
+    "Answer choice 2": "Raw string literal",
+    "Answer choice 3": "Use quotation marks",
+    "Answer choice 4": "None of the above",
+    "Correct answer": "Raw string literal"
+  },
+  {
+    "Question": "How is a pointer is represented in Go?",
+    "Answer choice 1": "With the asterisk * character",
+    "Answer choice 2": "With the > character",
+    "Answer choice 3": "With the -> character",
+    "Answer choice 4": "With the => character",
+    "Correct answer": "With the asterisk * character"
+  },
+  {
+    "Question": "How many Looping constructs are present in Go?",
+    "Answer choice 1": 0,
+    "Answer choice 2": 1,
+    "Answer choice 3": 2,
+    "Answer choice 4": 3,
+    "Correct answer": 1
+  },
+  {
+    "Question": "Go language",
+    "Answer choice 1": "Supports inheritance",
+    "Answer choice 2": "is Case sensitive",
+    "Answer choice 3": "Supports method overloading",
+    "Answer choice 4": "Can't declare multiple types of variables in single declaration",
+    "Correct answer": "is Case sensitive"
+  },
+  {
+    "Question": "How are constants declared in Go?",
+    "Answer choice 1": "const keyword",
+    "Answer choice 2": "constant keyword",
+    "Answer choice 3": "constants keyword",
+    "Answer choice 4": "There are no constants in Go",
+    "Correct answer": "const keyword"
+  },
+  {
+    "Question": "What are the advantages of GO?",
+    "Answer choice 1": "Functions are first class objects in GO",
+    "Answer choice 2": "GO has garbage collection",
+    "Answer choice 3": "Strings and Maps are built into the language",
+    "Answer choice 4": "All of the above",
+    "Correct answer": "All of the above"
+  },
+  {
+    "Question": "What's the name of the collection involved in the language?",
+    "Answer choice 1": "Portable collection",
+    "Answer choice 2": "Direct collection",
+    "Answer choice 3": "Garbage collection",
+    "Answer choice 4": "Static collection",
+    "Correct answer": "Garbage collection"
+  },
+  {
+    "Question": "What causes the loop to skip the remainder of its body and immediately retest its condition prior to reiterating in Go?",
+    "Answer choice 1": "Break",
+    "Answer choice 2": "Continue",
+    "Answer choice 3": "goto",
+    "Answer choice 4": "switch",
+    "Correct answer": "Continue"
+  },
+  {
+    "Question": "What are channels in Go language",
+    "Answer choice 1": "Buffered",
+    "Answer choice 2": "Unbuffered",
+    "Answer choice 3": "A and B",
+    "Answer choice 4": "None of the above",
+    "Correct answer": ""
+  }
+]

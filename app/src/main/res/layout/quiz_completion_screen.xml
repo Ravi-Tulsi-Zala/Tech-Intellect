@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Author: Haritha -->
+    <!-- Quiz completion screen with image view, text view and button. This page will be displayed upon the completion of a quiz -->
+
+    <TextView
+        android:id="@+id/congrats"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50sp"
+        android:layout_marginStart="100sp"
+        android:gravity="center_horizontal"
+        android:text="@string/congrats"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/trophy_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/trophy" />
+
+    <TextView
+        android:id="@+id/completed_quiz"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100sp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:text="@string/quiz_completed"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="18dp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/want_to_learn_more"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100sp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:text="Want to learn more?"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="18dp"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/take_me_home_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="#5c93ed"
+        android:text="@string/main_menu_button"
+        android:textColor="#fff" />
+
+</LinearLayout>

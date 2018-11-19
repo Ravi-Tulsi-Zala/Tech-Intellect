@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- Switch for enabling/disabling vibrate feature -->
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/haptic_key"
+        android:title="@string/haptic_feedback"
+        android:summary="@string/summary_vibrate"/>
+</PreferenceScreen>
