@@ -333,11 +333,25 @@ public class QuizScreen extends AppCompatActivity {
         //Acronyms url
         if(topic.equalsIgnoreCase("Computer Science Acronyms")){
             if(level.equalsIgnoreCase("Easy")){
-                String url = "https://tech-intellect-3dd39.firebaseio.com/";
+                String url = "https://tech-intellect-3dd39.firebaseio.com/acronyms_easy/";
                 return url;
             }
             if(level.equalsIgnoreCase("Medium")){
-                String url = "https://tech-intellect-3dd39.firebaseio.com/acronymsMedium/";
+                String url = "https://tech-intellect-3dd39.firebaseio.com/acronyms_medium/";
+                return url;
+            }
+            if(level.equalsIgnoreCase("Hard")){
+
+            }
+        }
+        // Google Go Url
+        else if(topic.equalsIgnoreCase("Google Go")){
+            if(level.equalsIgnoreCase("Easy")){
+                String url = "https://tech-intellect-3dd39.firebaseio.com/easy_go/";
+                return url;
+            }
+            if(level.equalsIgnoreCase("Medium")){
+                String url = "https://tech-intellect-3dd39.firebaseio.com/medium_go/";
                 return url;
             }
             if(level.equalsIgnoreCase("Hard")){
