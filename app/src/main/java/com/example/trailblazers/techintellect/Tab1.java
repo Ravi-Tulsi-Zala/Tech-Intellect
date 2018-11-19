@@ -123,6 +123,21 @@ public class Tab1 extends Fragment {
                 String level = materialDesignSpinnerDiffLvl.getText().toString();
                 String mode = materialDesignSpinnerMode.getText().toString();
 
+                if(TextUtils.isEmpty(topic))
+                {
+                    materialDesignSpinner.setError("Topic cannot be empty");
+
+                }
+                if(TextUtils.isEmpty(level))
+                {
+                    materialDesignSpinnerDiffLvl.setError("Level cannot be empty");
+                }
+                if(TextUtils.isEmpty(mode))
+                {
+                    materialDesignSpinnerMode.setError("Mode cannot be empty");
+                }
+                else {
+
                     Bundle bundle = new Bundle();
                     bundle.putString("topic", topic);
                     bundle.putString("level", level);
@@ -130,7 +145,8 @@ public class Tab1 extends Fragment {
                     intent.putExtras(bundle);
 
                     startActivity(intent);
-                //Added by Ravi ends
+                    //Added by Ravi ends
+                }
             }
         });
 
