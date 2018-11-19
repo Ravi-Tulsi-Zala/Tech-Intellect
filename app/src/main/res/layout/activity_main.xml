@@ -52,7 +52,6 @@
 
 
 
-
     </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
@@ -124,9 +123,6 @@
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
         android:textColor="#2196f3"
-        android:onClick="forgotPassword"
-
-
         />
 
     <LinearLayout
@@ -137,7 +133,7 @@
         android:orientation="horizontal"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
-        android:onClick="signUp"
+
 
         >
 

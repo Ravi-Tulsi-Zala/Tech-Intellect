@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,7 @@ public class Tab1 extends Fragment {
      * @return A new instance of fragment Tab1.
      */
     // TODO: Rename and change types and number of parameters
+
     public static Tab1 newInstance(String param1, String param2) {
         Tab1 fragment = new Tab1();
         Bundle args = new Bundle();
@@ -108,23 +110,45 @@ public class Tab1 extends Fragment {
         final MaterialBetterSpinner materialDesignSpinnerMode = (MaterialBetterSpinner) view.findViewById(R.id.mode_spinner);
         materialDesignSpinnerMode.setAdapter(arrayAdapter3);
 
+        //Added by Ravi starts
         btnTakeQuiz =view.findViewById(R.id.btnTakeQuiz);
+
 
         btnTakeQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),QuizScreen.class);
-                //Added by Aravind starts
+
                 String topic = materialDesignSpinner.getText().toString();
                 String level = materialDesignSpinnerDiffLvl.getText().toString();
                 String mode = materialDesignSpinnerMode.getText().toString();
-                Bundle bundle = new Bundle();
-                bundle.putString("topic", topic);
-                bundle.putString("level", level);
-                bundle.putString("mode", mode);
-                intent.putExtras(bundle);
-                //Added by Aravind ends
-                startActivity(intent);
+
+                if(TextUtils.isEmpty(topic))
+                {
+                    materialDesignSpinner.setError("Topic cannot be empty");
+
+                }
+                if(TextUtils.isEmpty(level))
+                {
+                    materialDesignSpinnerDiffLvl.setError("Level cannot be empty");
+                }
+                if(TextUtils.isEmpty(mode))
+                {
+                    materialDesignSpinnerMode.setError("Mode cannot be empty");
+                }
+                else
+                {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("topic", topic);
+                    bundle.putString("level", level);
+                    bundle.putString("mode", mode);
+                    intent.putExtras(bundle);
+
+                    startActivity(intent);
+                }
+
+
+                //Added by Ravi ends
             }
         });
 
