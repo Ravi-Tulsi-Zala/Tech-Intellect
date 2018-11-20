@@ -351,9 +351,12 @@ public class QuizScreen extends AppCompatActivity {
                 Url = "https://tech-intellect-3dd39.firebaseio.com/acronyms_medium/";
                 return Url;
             }
+            //Added by Haritha - starts
             if(level.equalsIgnoreCase("Hard")){
-
+                Url = "https://tech-intellect-3dd39.firebaseio.com/acronyms_hard/";
+                return Url;
             }
+            //Added by Haritha - ends
         }
         // Google Go Url
         else if(topic.equalsIgnoreCase("Google Go")){
