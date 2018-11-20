@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth authentication;
     private Button btnGuest;
     //Added by Ravi Ends
+    int backButtonCount =0; //Added by Haritha
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //Added by Ravi ends
+
     }
 
     boolean isEmail(EditText text){
@@ -128,9 +130,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Added by Haritha - Starts
+    @Override
+    public void onBackPressed() {
+        if(backButtonCount >= 1)
+        {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+        else
+        {
+            Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
+            backButtonCount++;
+        }
 
-
-
-
-
+    }
+    //Added by Haritha - Ends
 }
