@@ -372,6 +372,21 @@ public class QuizScreen extends AppCompatActivity {
 
             }
         }
+        //NLP url
+        if(topic.equalsIgnoreCase("Natural Language Processing")){
+            if(level.equalsIgnoreCase("Easy")){
+                Url = "https://tech-intellect-3dd39.firebaseio.com/NLP_easy/";
+                return Url;
+            }
+            if(level.equalsIgnoreCase("Medium")){
+                Url = "https://tech-intellect-3dd39.firebaseio.com/NLP_medium/";
+                return Url;
+            }
+            if(level.equalsIgnoreCase("Hard")){
+                Url = "https://tech-intellect-3dd39.firebaseio.com/NLP_hard/";
+                return Url;
+            }
+        }
         return "success";
 
     }
