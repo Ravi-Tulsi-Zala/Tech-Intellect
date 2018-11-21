@@ -1,9 +1,14 @@
 package com.example.trailblazers.techintellect;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.TextUtils;
@@ -60,32 +65,50 @@ public class Registration extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validateEntries()){
-                    progressDialog.setMessage("Registering..Please wait!");
-                    progressDialog.show();
-                    Thread mthread = new Thread(){  //Creating a separate thread for progress dialog
-                        @Override
-                        public void run() {
-                            auth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if(task.isSuccessful()){
-                                        progressDialog.hide();
-                                        saveDisplayName();
-                                        Toast.makeText(getApplicationContext(), "Success! Kindly login to proceed. ", Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                                        startActivity(intent);
+                if(isConnectedToInternet()){
+                    if(validateEntries()){
+                        progressDialog.setMessage("Registering..Please wait!");
+                        progressDialog.show();
+                        Thread mthread = new Thread(){  //Creating a separate thread for progress dialog
+                            @Override
+                            public void run() {
+                                auth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if(task.isSuccessful()){
+                                            progressDialog.hide();
+                                            saveDisplayName();
+                                            Toast.makeText(getApplicationContext(), "Success! Kindly login to proceed. ", Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                            startActivity(intent);
+                                        }
+                                        if(!task.isSuccessful()){
+                                            FirebaseAuthException e = (FirebaseAuthException )task.getException();
+                                            Toast.makeText(getApplicationContext(), "Failed Registration: "+e.getMessage(), Toast.LENGTH_LONG).show();
+                                        }
                                     }
-                                    if(!task.isSuccessful()){
-                                        FirebaseAuthException e = (FirebaseAuthException )task.getException();
-                                        Toast.makeText(getApplicationContext(), "Failed Registration: "+e.getMessage(), Toast.LENGTH_LONG).show();
-                                    }
+                                });
+                            }
+                        };
+                        mthread.start();
+                    }
+                }
+                else{
+                    //Alerting when there is no active internet connection
+                    AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(Registration.this);
+                    dlgAlert.setMessage("Please check your internet connection and try again!");
+                    dlgAlert.setTitle("Alert");
+                    dlgAlert.setPositiveButton("Ok", null);
+                    dlgAlert.setCancelable(true);
+                    dlgAlert.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
                                 }
                             });
-                        }
-                    };
-                  mthread.start();
+                    dlgAlert.create().show();
                 }
+
 
             }
         });
@@ -158,5 +181,22 @@ public class Registration extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    //Method to check if there is active internet connection
+    public boolean isConnectedToInternet(){
+        ConnectivityManager connectivity = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null)
+        {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null)
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED)
+                    {
+                        return true;
+                    }
+
+        }
+        return false;
     }
 }

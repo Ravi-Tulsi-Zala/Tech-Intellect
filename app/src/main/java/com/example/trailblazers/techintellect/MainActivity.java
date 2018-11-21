@@ -1,8 +1,13 @@
 package com.example.trailblazers.techintellect;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -71,35 +76,53 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(isConnectedToInternet()){ //Added by Aravind - checking if device is connected to internet
+                    if(validateCredentials()) {
 
-              if(validateCredentials()) {
+                        final ProgressDialog progressDialog = ProgressDialog.show(MainActivity.this, "Please wait....", "Logging in.....", true);
 
-                  final ProgressDialog progressDialog = ProgressDialog.show(MainActivity.this, "Please wait....", "Logging in.....", true);
+                        (authentication.signInWithEmailAndPassword(etEmail.getText().toString(), etPassword.getText().toString()))
+                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-                  (authentication.signInWithEmailAndPassword(etEmail.getText().toString(), etPassword.getText().toString()))
-                          .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                              @Override
-                              public void onComplete(@NonNull Task<AuthResult> task) {
+                                        progressDialog.dismiss();
+                                        if (task.isSuccessful()) {
 
-                                  progressDialog.dismiss();
-                                  if (task.isSuccessful()) {
-
-                                      Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
-                                      startActivity(intent);
-                                      //Toast.makeText(MainActivity.this,"Login Successful",Toast.LENGTH_LONG).show();
-                                  } else {
-                                      Log.e("Error", task.getException().toString());
-                                      Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                                  }
+                                            Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                                            startActivity(intent);
+                                            //Toast.makeText(MainActivity.this,"Login Successful",Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Log.e("Error", task.getException().toString());
+                                            Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                        }
 
 
-                              }
-                          });
-              }
+                                    }
+                                });
+                    }
+                }
+                //Added by Aravind - Starts
+                else{
+                    //Alerting when there is no active internet connection
+                    AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(MainActivity.this);
+                    dlgAlert.setMessage("Please check your internet connection and try again!");
+                    dlgAlert.setTitle("Alert");
+                    dlgAlert.setPositiveButton("Ok", null);
+                    dlgAlert.setCancelable(true);
+                    dlgAlert.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                    dlgAlert.create().show();
+                }
+                //Added by Aravind - Ends
+
             }
         });
         //Added by Ravi ends
-
     }
 
     boolean isEmail(EditText text){
@@ -148,4 +171,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
     //Added by Haritha - Ends
+
+    //Added by Aravind - Starts
+    //Method to check if there is active internet connection
+    public boolean isConnectedToInternet(){
+        ConnectivityManager connectivity = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null)
+        {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null)
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED)
+                    {
+                        return true;
+                    }
+
+        }
+        return false;
+    }
+    //Added by Aravind - Ends
 }

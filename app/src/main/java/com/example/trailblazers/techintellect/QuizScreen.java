@@ -5,9 +5,12 @@
  */
 package com.example.trailblazers.techintellect;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -281,91 +284,111 @@ public class QuizScreen extends AppCompatActivity {
     //Method for fetching the JSON values from firebase and displaying it in the UI
     public void performQuiz(){
         submit.setEnabled(true);
-        questionRef = new Firebase(firebaseUrl+""+questionNumber+"/Question");
-        questionRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String question = dataSnapshot.getValue(String.class);
-                questionTextView.setText(question);
-            }
+        if(isConnectedToInternet()){
+            questionRef = new Firebase(firebaseUrl+""+questionNumber+"/Question");
+            questionRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String question = dataSnapshot.getValue(String.class);
+                    questionTextView.setText(question);
+                }
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
 
-            }
-        });
+                }
+            });
 
-        option1Ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer choice 1");
-        option1Ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String data = dataSnapshot.getValue(String.class);
-                option1.setText(data);
-            }
+            option1Ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer choice 1");
+            option1Ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String data = dataSnapshot.getValue(String.class);
+                    option1.setText(data);
+                }
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
 
-            }
-        });
+                }
+            });
 
-        option2Ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer choice 2");
-        option2Ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String data = dataSnapshot.getValue(String.class);
-                option2.setText(data);
-            }
+            option2Ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer choice 2");
+            option2Ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String data = dataSnapshot.getValue(String.class);
+                    option2.setText(data);
+                }
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
 
-            }
-        });
+                }
+            });
 
-        option3Ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer choice 3");
-        option3Ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String data = dataSnapshot.getValue(String.class);
-                option3.setText(data);
-            }
+            option3Ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer choice 3");
+            option3Ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String data = dataSnapshot.getValue(String.class);
+                    option3.setText(data);
+                }
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
 
-            }
-        });
+                }
+            });
 
-        option4ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer choice 4");
-        option4ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String data = dataSnapshot.getValue(String.class);
-                option4.setText(data);
-            }
+            option4ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer choice 4");
+            option4ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String data = dataSnapshot.getValue(String.class);
+                    option4.setText(data);
+                }
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
 
-            }
-        });
+                }
+            });
 
-        answerRef = new Firebase(firebaseUrl+""+questionNumber+"/Correct answer");
-        answerRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String data = dataSnapshot.getValue(String.class);
-                correctAnswerValue = data;
-            }
+            answerRef = new Firebase(firebaseUrl+""+questionNumber+"/Correct answer");
+            answerRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String data = dataSnapshot.getValue(String.class);
+                    correctAnswerValue = data;
+                }
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
 
-            }
-        });
-        dummyQuestionNumber = questionNumber;
-        questionNumber++;
+                }
+            });
+            dummyQuestionNumber = questionNumber;
+            questionNumber++;
+        }
+        else{
+            //Alerting when there is no active internet connection
+            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(QuizScreen.this);
+            dlgAlert.setMessage("Please check your internet connection and try again!");
+            dlgAlert.setTitle("Alert");
+            dlgAlert.setPositiveButton("Ok", null);
+            dlgAlert.setCancelable(true);
+            dlgAlert.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent homeActivity = new Intent(getApplicationContext(),HomeScreen.class);
+                            startActivity(homeActivity);
+                            dialog.cancel();
+                        }
+                    });
+            dlgAlert.create().show();
+        }
+
     }
 
     //This method builds the firebase URL based on the user's selection in the home screen
@@ -478,6 +501,23 @@ public class QuizScreen extends AppCompatActivity {
         secondsVal = secondsVal.replaceAll("(?<!\\d)\\d(?!\\d)", "0$0");
 
         timerView.setText(getString(R.string.txtTimer, minutesVal, secondsVal));
+    }
+
+    //Method to check if there is active internet connection
+    public boolean isConnectedToInternet(){
+        ConnectivityManager connectivity = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null)
+        {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null)
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED)
+                    {
+                        return true;
+                    }
+
+        }
+        return false;
     }
 
 
