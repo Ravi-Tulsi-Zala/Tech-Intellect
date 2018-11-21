@@ -50,6 +50,8 @@
             android:name="com.example.trailblazers.techintellect.ForgotPassword"
             android:parentActivityName=".MainActivity">
         </activity>
+	<activity android:name=".Dashboard_Intent">
+        </activity>
     </application>
 
 </manifest>

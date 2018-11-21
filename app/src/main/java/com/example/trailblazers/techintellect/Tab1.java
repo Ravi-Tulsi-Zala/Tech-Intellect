@@ -18,6 +18,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,7 +39,7 @@ public class Tab1 extends Fragment {
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-
+    public static List<FirebaseDataModel> flist;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -140,11 +143,17 @@ public class Tab1 extends Fragment {
                     }
                     else {
 
-                        Bundle bundle = new Bundle();
-                        bundle.putString("topic", topic);
-                        bundle.putString("level", level);
-                        bundle.putString("mode", mode);
-                        intent.putExtras(bundle);
+                    FirebaseDataModel f1 = new FirebaseDataModel();
+                    flist = new ArrayList<FirebaseDataModel>();
+                    f1.setTopic(topic);
+                    f1.setLevel(level);
+                    flist.add(f1);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("topic", topic);
+                    bundle.putString("level", level);
+                    bundle.putString("mode", mode);
+                    intent.putExtras(bundle);
 
                         startActivity(intent);
                         //Added by Ravi ends
