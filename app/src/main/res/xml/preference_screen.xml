@@ -6,4 +6,15 @@
         android:key="@string/haptic_key"
         android:title="@string/haptic_feedback"
         android:summary="@string/summary_vibrate"/>
+
+    <!-- Change Password feature -->
+    <PreferenceScreen android:title="@string/change_password">
+
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="com.example.trailblazers.techintellect"
+            android:targetClass="com.example.trailblazers.techintellect.ChangePassword" />
+
+    </PreferenceScreen>
+
 </PreferenceScreen>

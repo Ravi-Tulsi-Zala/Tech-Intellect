@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth authentication;
     private Button btnGuest;
     //Added by Ravi Ends
+
+    private TextView btn_forgoPwd; //Added by Yash
+
     int backButtonCount =0; //Added by Haritha
 
     @Override
@@ -60,6 +63,17 @@ public class MainActivity extends AppCompatActivity {
 
         btnGuest = findViewById(R.id.btn_guest);
 
+        //Added by Yash Starts
+        btn_forgoPwd = findViewById(R.id.btn_forgoPwd);
+
+        btn_forgoPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
+        //Added by Yash Ends
 
         btnGuest.setOnClickListener(new View.OnClickListener() {
             @Override

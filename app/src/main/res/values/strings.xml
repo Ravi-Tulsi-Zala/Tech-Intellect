@@ -9,7 +9,6 @@
     <string name="register_pwd">Password</string>
     <string name="register_cnfrm_pwd">Confirm Password</string>
     <string name="fp_forgotPasswordStr">Forgot your password?</string>
-    <string name="fp_backBtnStr">&lt; Back</string>
     <string name="fp_NPstr">No Problem!!</string>
     <string name="fp_enterEmailStr">Enter your email address to reset password</string>
     <string name="fp_emailHintStr">Enter email address</string>
@@ -60,5 +59,8 @@
     <string name="main_menu">Want to learn more?</string>
     <string name="congrats">Congratulations!</string>
     <string name="txtTimer">%1$s : %2$s</string>
+
+    <string name="changePassword_key">Change Password</string>
+    <string name="change_password">Change Password</string>
 
 </resources>

@@ -42,7 +42,14 @@
             android:name=".QuizCompletionScreen"
             android:parentActivityName=".QuizScreen">
         </activity>
-
+        <activity
+            android:name="com.example.trailblazers.techintellect.ChangePassword"
+            android:parentActivityName=".SettingsActivity">
+        </activity>
+        <activity
+            android:name="com.example.trailblazers.techintellect.ForgotPassword"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>
