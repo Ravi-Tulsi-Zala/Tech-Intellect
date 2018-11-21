@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -95,7 +96,7 @@ public class Tab1 extends Fragment {
             welcome.setText("Welcome Guest");
         }
 
-        final String[] SPINNERLIST = {"R Programming", "Natural Language Processing", "Google Go", "Computer Science Acronyms"};
+        final String[] SPINNERLIST = {"Computer Science Acronyms", "Natural Language Processing", "Google Go","R Programming" };
         ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, SPINNERLIST);
         final MaterialBetterSpinner materialDesignSpinner = (MaterialBetterSpinner) view.findViewById(R.id.quiz_topics_spinner);
         materialDesignSpinner.setAdapter(arrayAdapter1);
@@ -117,36 +118,39 @@ public class Tab1 extends Fragment {
         btnTakeQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),QuizScreen.class);
 
-                String topic = materialDesignSpinner.getText().toString();
-                String level = materialDesignSpinnerDiffLvl.getText().toString();
-                String mode = materialDesignSpinnerMode.getText().toString();
+                    Intent intent = new Intent(getActivity(),QuizScreen.class);
 
-                if(TextUtils.isEmpty(topic))
-                {
-                    materialDesignSpinner.setError("Topic cannot be empty");
+                    String topic = materialDesignSpinner.getText().toString();
+                    String level = materialDesignSpinnerDiffLvl.getText().toString();
+                    String mode = materialDesignSpinnerMode.getText().toString();
+                if(checkIncompleteTopics(topic,level)){  //Checking if the user selects our incomplete topics - to be removed after update 2 - Added by Haritha
+                    if(TextUtils.isEmpty(topic))
+                    {
+                        materialDesignSpinner.setError("Topic cannot be empty");
 
+                    }
+                    if(TextUtils.isEmpty(level))
+                    {
+                        materialDesignSpinnerDiffLvl.setError("Level cannot be empty");
+                    }
+                    if(TextUtils.isEmpty(mode))
+                    {
+                        materialDesignSpinnerMode.setError("Mode cannot be empty");
+                    }
+                    else {
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("topic", topic);
+                        bundle.putString("level", level);
+                        bundle.putString("mode", mode);
+                        intent.putExtras(bundle);
+
+                        startActivity(intent);
+                        //Added by Ravi ends
+                    }
                 }
-                if(TextUtils.isEmpty(level))
-                {
-                    materialDesignSpinnerDiffLvl.setError("Level cannot be empty");
-                }
-                if(TextUtils.isEmpty(mode))
-                {
-                    materialDesignSpinnerMode.setError("Mode cannot be empty");
-                }
-                else {
 
-                    Bundle bundle = new Bundle();
-                    bundle.putString("topic", topic);
-                    bundle.putString("level", level);
-                    bundle.putString("mode", mode);
-                    intent.putExtras(bundle);
-
-                    startActivity(intent);
-                    //Added by Ravi ends
-                }
             }
         });
 
@@ -191,5 +195,20 @@ public class Tab1 extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    //Checking if the user selects our incomplete topics - to be removed after update 2 - Added by Haritha starts
+    public boolean checkIncompleteTopics (String topic, String level){
+        if(topic != null && topic.equalsIgnoreCase("R Programming")){
+            Toast.makeText(getContext(),"R Programming will be updated soon.",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(topic != null && topic.equalsIgnoreCase("Google Go") && level != null && level.equalsIgnoreCase("Hard")){
+            Toast.makeText(getContext(),"Hard level of Google Go will be updated soon.",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+
+    }
+    //Checking if the user selects our incomplete topics - to be removed after update 2 - Added by Haritha ends
 }
 
