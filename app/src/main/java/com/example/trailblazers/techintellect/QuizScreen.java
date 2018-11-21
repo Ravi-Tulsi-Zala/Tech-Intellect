@@ -204,7 +204,7 @@ public class QuizScreen extends AppCompatActivity {
                         }
                     };
                     Handler h = new Handler();
-                    h.postDelayed(r, 4000); // <-- the "4000" is the delay time in miliseconds.
+                    h.postDelayed(r, 1000); // <-- the "1000" is the delay time in miliseconds.
                 }
       }
 
@@ -346,6 +346,7 @@ public class QuizScreen extends AppCompatActivity {
             }
         }
         // Google Go Url
+        // Added by Smit start
         else if(topic.equalsIgnoreCase("Google Go")){
             if(level.equalsIgnoreCase("Easy")){
                 Url = "https://tech-intellect-3dd39.firebaseio.com/easy_go/";
@@ -358,6 +359,7 @@ public class QuizScreen extends AppCompatActivity {
             if(level.equalsIgnoreCase("Hard")){
 
             }
+            // A
         }
         return "success";
 

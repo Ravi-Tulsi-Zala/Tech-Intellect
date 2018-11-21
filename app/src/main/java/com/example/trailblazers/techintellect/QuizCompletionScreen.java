@@ -21,6 +21,7 @@ public class QuizCompletionScreen extends AppCompatActivity {
 
 private Button main_menu_button;
 private ImageView trophy_image;
+private Button dashboard_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ private ImageView trophy_image;
 
         trophy_image = findViewById(R.id.trophy_img);
         main_menu_button = findViewById(R.id.take_me_home_btn);
-
+        dashboard_btn = findViewById(R.id.dashboard);
         main_menu_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,7 +38,12 @@ private ImageView trophy_image;
                 startActivity(intent);
             }
         });
-
+        dashboard_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ;
+            }
+        });
         //Animating the image view
         Animation animation = new AlphaAnimation(1, 0);
         animation.setDuration(1000);

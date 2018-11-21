@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,9 +75,12 @@ public class Tab2 extends Fragment {
         View root = inflater.inflate(R.layout.fragment_tab2, container, false);
         RecyclerView recyclerView = (RecyclerView)root.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        String [] topicdata = {"Google Go","R programming","Acronyms","Augmented Reality"};
-        recyclerView.setAdapter(new RecyclerViewAdapter(getContext(),topicdata));
+
+
+        //RecyclerView RecycleQA = (RecyclerView)
+        recyclerView.setAdapter(new RecyclerViewAdapter(getContext(),Tab1.flist));
         return root;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
