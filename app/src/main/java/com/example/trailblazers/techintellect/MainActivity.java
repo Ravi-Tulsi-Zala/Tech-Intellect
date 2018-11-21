@@ -13,9 +13,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     //Added by Ravi Ends
 
     private TextView btn_forgoPwd; //Added by Yash
-
+    private LinearLayout linearLayout;
     int backButtonCount =0; //Added by Haritha
 
     @Override
@@ -137,8 +140,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //Added by Ravi ends
-    }
 
+        // Added by Smit to hide the keyboard
+        linearLayout = (LinearLayout) findViewById(R.id.linearlayout);
+        linearLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hide(v);
+                return false;
+            }
+        });
+    }
+protected void hide(View view){
+    InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+    in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+}
     boolean isEmail(EditText text){
         CharSequence input = text.getText().toString();
         return (!TextUtils.isEmpty(input) && Patterns.EMAIL_ADDRESS.matcher(input).matches());
@@ -204,4 +220,6 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
     //Added by Aravind - Ends
+
+
 }
