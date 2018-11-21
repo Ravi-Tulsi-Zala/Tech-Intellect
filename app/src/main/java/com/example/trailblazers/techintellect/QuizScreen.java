@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v7.app.ActionBar;
@@ -59,6 +60,10 @@ public class QuizScreen extends AppCompatActivity {
     private String firebaseUrl;
     private Vibrator vibe;
     List<Integer> wrongly_answered = new ArrayList<Integer>();
+    private TextView timerView;
+    private CountDownTimer timer;
+    private long millisInFuture,minutes, seconds = 0;
+    private boolean isQuizCompleted = false;
     //Added by Aravind - Ends
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,9 +137,32 @@ public class QuizScreen extends AppCompatActivity {
         radioGroup = findViewById(R.id.radioOptions);
         levelView = findViewById(R.id.difficultyModeText);
         topicView = findViewById(R.id.topicNameText);
+        timerView = findViewById(R.id.timerTextView);
 
         levelView.setText(level);
         topicView.setText(topic);
+
+        if(mode !=null && mode.equalsIgnoreCase("Timed")){
+            if(level !=null && level.equalsIgnoreCase("Easy")){
+                minutes = 7;
+                seconds = 30;
+                millisInFuture = minutes * 60000 + seconds * 1000;
+                startCountDownTimer();
+            }
+            else if(level !=null && level.equalsIgnoreCase("Medium")){
+                minutes = 5;
+                seconds = 30;
+                millisInFuture = minutes * 60000 + seconds * 1000;
+                startCountDownTimer();
+            }
+            else if(level !=null && level.equalsIgnoreCase("Hard")){
+                minutes = 3;
+                seconds = 30;
+                millisInFuture = minutes * 60000 + seconds * 1000;
+                startCountDownTimer();
+            }
+
+        }
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,6 +210,7 @@ public class QuizScreen extends AppCompatActivity {
                             else{
                                 //Added by Haritha for jumping to quiz completion screen upon completion of quiz - starts
                                 //Toast.makeText(getApplicationContext(), "Quiz has been completed! ", Toast.LENGTH_LONG).show();
+                                isQuizCompleted = true;
                                 Intent intent = new Intent(getApplicationContext(),QuizCompletionScreen.class);
                                 startActivity(intent);
                                 //Added by Haritha for jumping to quiz completion screen upon completion of quiz - ends
@@ -207,6 +236,7 @@ public class QuizScreen extends AppCompatActivity {
                             else{
                                 //Added by Haritha for jumping to quiz completion screen upon completion of quiz - starts
                                 //Toast.makeText(getApplicationContext(), "Quiz has been completed! ", Toast.LENGTH_LONG).show();
+                                isQuizCompleted = true;
                                 Intent intent = new Intent(getApplicationContext(),QuizCompletionScreen.class);
                                 startActivity(intent);
                                 //Added by Haritha for jumping to quiz completion screen upon completion of quiz - ends
@@ -342,47 +372,47 @@ public class QuizScreen extends AppCompatActivity {
     public String buildUrl(String topic, String level){
         //Acronyms url
         String Url;
-        if(topic.equalsIgnoreCase("Computer Science Acronyms")){
-            if(level.equalsIgnoreCase("Easy")){
+        if(topic !=null && topic.equalsIgnoreCase("Computer Science Acronyms")){
+            if(level !=null && level.equalsIgnoreCase("Easy")){
                 Url = "https://tech-intellect-3dd39.firebaseio.com/acronyms_easy/";
                 return Url;
             }
-            if(level.equalsIgnoreCase("Medium")){
+            if(level !=null && level.equalsIgnoreCase("Medium")){
                 Url = "https://tech-intellect-3dd39.firebaseio.com/acronyms_medium/";
                 return Url;
             }
             //Added by Haritha - starts
-            if(level.equalsIgnoreCase("Hard")){
+            if(level !=null && level.equalsIgnoreCase("Hard")){
                 Url = "https://tech-intellect-3dd39.firebaseio.com/acronyms_hard/";
                 return Url;
             }
             //Added by Haritha - ends
         }
         // Google Go Url
-        else if(topic.equalsIgnoreCase("Google Go")){
-            if(level.equalsIgnoreCase("Easy")){
+        else if( topic !=null && topic.equalsIgnoreCase("Google Go")){
+            if(level !=null && level.equalsIgnoreCase("Easy")){
                 Url = "https://tech-intellect-3dd39.firebaseio.com/easy_go/";
                 return Url;
             }
-            if(level.equalsIgnoreCase("Medium")){
+            if(level !=null && level.equalsIgnoreCase("Medium")){
                 Url = "https://tech-intellect-3dd39.firebaseio.com/medium_go/";
                 return Url;
             }
-            if(level.equalsIgnoreCase("Hard")){
+            if(level !=null && level.equalsIgnoreCase("Hard")){
 
             }
         }
         //NLP url
-        if(topic.equalsIgnoreCase("Natural Language Processing")){
-            if(level.equalsIgnoreCase("Easy")){
+        else if(topic !=null && topic.equalsIgnoreCase("Natural Language Processing")){
+            if(level !=null && level.equalsIgnoreCase("Easy")){
                 Url = "https://tech-intellect-3dd39.firebaseio.com/NLP_easy/";
                 return Url;
             }
-            if(level.equalsIgnoreCase("Medium")){
+            if(level !=null && level.equalsIgnoreCase("Medium")){
                 Url = "https://tech-intellect-3dd39.firebaseio.com/NLP_medium/";
                 return Url;
             }
-            if(level.equalsIgnoreCase("Hard")){
+            if(level !=null && level.equalsIgnoreCase("Hard")){
                 Url = "https://tech-intellect-3dd39.firebaseio.com/NLP_hard/";
                 return Url;
             }
@@ -413,6 +443,41 @@ public class QuizScreen extends AppCompatActivity {
                 });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    //for displaying timer in timed mode
+    private void startCountDownTimer(){
+
+        long startFrom = millisInFuture;
+        timer = new CountDownTimer(startFrom, 1000) {
+            @Override
+            public void onTick(long millisLeft) {
+                setTxtTimerValue(millisLeft);
+            }
+
+            @Override
+            public void onFinish() {
+                setTxtTimerValue(0);
+                if(!isQuizCompleted){
+                    Toast.makeText(getApplicationContext(),"Oops..Time out!",Toast.LENGTH_LONG).show();
+                    Intent homeActivity = new Intent(getApplicationContext(),HomeScreen.class);
+                    startActivity(homeActivity);
+                }
+
+            }
+        }.start();
+    }
+
+    public void setTxtTimerValue(long millis){
+        minutes = millis / 60000;
+        seconds = (millis / 1000) % 60;
+
+        String minutesVal = String.valueOf(minutes);
+        String secondsVal = String.valueOf(seconds);
+
+        secondsVal = secondsVal.replaceAll("(?<!\\d)\\d(?!\\d)", "0$0");
+
+        timerView.setText(getString(R.string.txtTimer, minutesVal, secondsVal));
     }
 
 

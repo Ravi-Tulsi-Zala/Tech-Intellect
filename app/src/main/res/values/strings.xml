@@ -59,5 +59,6 @@
     <string name="main_menu_button">Yes, take me home!</string>
     <string name="main_menu">Want to learn more?</string>
     <string name="congrats">Congratulations!</string>
+    <string name="txtTimer">%1$s : %2$s</string>
 
 </resources>
