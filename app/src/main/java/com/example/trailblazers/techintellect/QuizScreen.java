@@ -9,6 +9,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -197,6 +198,10 @@ public class QuizScreen extends AppCompatActivity {
 
                 //when the user answer is wrong
                 if(!radioButton.getText().toString().equalsIgnoreCase(correctAnswerValue)){
+                    //Added by Haritha - starts
+                    MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.wronganswer);
+                    mediaPlayer.start();
+                    //Added by Haritha - ends
                     boolean isVibrate = SettingsActivity.isVibrateSwitchOn;
                     if(isVibrate)
                      vibe.vibrate(500);
@@ -227,6 +232,10 @@ public class QuizScreen extends AppCompatActivity {
                 }
                 //when the answer is correct
                 else{
+                    //Added by Haritha - starts
+                    MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.correctanswer);
+                    mediaPlayer.start();
+                    //Added by Haritha - ends
                     correct_answer.setTextColor(0xFF00FF00);
                     correct_answer.setText("You got it correct!");
                     radioGroup.clearCheck();
