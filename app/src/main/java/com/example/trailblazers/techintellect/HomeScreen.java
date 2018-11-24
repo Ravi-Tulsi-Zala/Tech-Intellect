@@ -153,10 +153,10 @@ public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInte
             if(resultCode == RESULT_OK) {
                 boolean switchVal = data.getBooleanExtra("switchVal",false);
                 vibrateSwitchOn = switchVal;
-                if(vibrateSwitchOn)
+                /*if(vibrateSwitchOn)
                    Toast.makeText(getApplicationContext(),"Vibrate is on", Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(getApplicationContext(),"Vibrate is off", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Vibrate is off", Toast.LENGTH_SHORT).show();*/
 
             }
         }
