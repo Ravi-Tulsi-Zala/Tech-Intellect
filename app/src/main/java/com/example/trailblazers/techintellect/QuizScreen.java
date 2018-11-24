@@ -26,10 +26,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +35,6 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
-import com.google.firebase.auth.FirebaseAuth;
 
 
 import java.util.ArrayList;
@@ -73,6 +70,7 @@ public class QuizScreen extends AppCompatActivity {
     private long millisInFuture,minutes, seconds = 0;
     private boolean isQuizCompleted = false;
     private boolean isVibrate;
+    private boolean isTimedMode;
     //Added by Aravind - Ends
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +99,8 @@ public class QuizScreen extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                if(isTimedMode)
+                                    timer.cancel();
                                 finish();
                                 Intent homeActivity = new Intent(getApplicationContext(),HomeScreen.class);
                                 startActivity(homeActivity);
@@ -153,29 +153,50 @@ public class QuizScreen extends AppCompatActivity {
 
         levelView.setText(level);
         topicView.setText(topic);
+        if(mode !=null && mode.equalsIgnoreCase("Timed"))
+            isTimedMode = true;
+        else
+            isTimedMode = false;
 
-        if(mode !=null && mode.equalsIgnoreCase("Timed")){
+        //Setting time for timed mode
+        if(isTimedMode){
             if(level !=null && level.equalsIgnoreCase("Easy")){
                 minutes = 7;
                 seconds = 30;
                 millisInFuture = minutes * 60000 + seconds * 1000;
-                startCountDownTimer();
             }
             else if(level !=null && level.equalsIgnoreCase("Medium")){
                 minutes = 5;
                 seconds = 30;
                 millisInFuture = minutes * 60000 + seconds * 1000;
-                startCountDownTimer();
             }
             else if(level !=null && level.equalsIgnoreCase("Hard")){
                 minutes = 3;
                 seconds = 30;
                 millisInFuture = minutes * 60000 + seconds * 1000;
-                startCountDownTimer();
             }
+            timer = new CountDownTimer(millisInFuture, 1000) {
+                @Override
+                public void onTick(long millisLeft) {
+                    setTxtTimerValue(millisLeft);
+                }
+
+                @Override
+                public void onFinish() {
+                    setTxtTimerValue(0);
+                    if(!isQuizCompleted){
+                        Toast.makeText(getApplicationContext(),"Oops..Time out!",Toast.LENGTH_LONG).show();
+                        if(isTimedMode)
+                            timer.cancel();
+                        finish();
+                        Intent homeActivity = new Intent(getApplicationContext(),HomeScreen.class);
+                        startActivity(homeActivity);
+                    }
+
+                }
+            }.start();
 
         }
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -227,6 +248,9 @@ public class QuizScreen extends AppCompatActivity {
                                 //Added by Haritha for jumping to quiz completion screen upon completion of quiz - starts
                                 //Toast.makeText(getApplicationContext(), "Quiz has been completed! ", Toast.LENGTH_LONG).show();
                                 isQuizCompleted = true;
+                                if(isTimedMode)
+                                    timer.cancel();
+                                finish();
                                 Intent intent = new Intent(getApplicationContext(),QuizCompletionScreen.class);
                                 startActivity(intent);
                                 //Added by Haritha for jumping to quiz completion screen upon completion of quiz - ends
@@ -257,6 +281,9 @@ public class QuizScreen extends AppCompatActivity {
                                 //Added by Haritha for jumping to quiz completion screen upon completion of quiz - starts
                                 //Toast.makeText(getApplicationContext(), "Quiz has been completed! ", Toast.LENGTH_LONG).show();
                                 isQuizCompleted = true;
+                                if(isTimedMode)
+                                    timer.cancel();
+                                finish();
                                 Intent intent = new Intent(getApplicationContext(),QuizCompletionScreen.class);
                                 startActivity(intent);
                                 //Added by Haritha for jumping to quiz completion screen upon completion of quiz - ends
@@ -280,6 +307,8 @@ public class QuizScreen extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                if(isTimedMode)
+                                    timer.cancel();
                                 finish();
                                 Intent homeActivity = new Intent(getApplicationContext(),HomeScreen.class);
                                 startActivity(homeActivity);
@@ -398,6 +427,8 @@ public class QuizScreen extends AppCompatActivity {
             dlgAlert.setPositiveButton("Ok",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
+                            if(isTimedMode)
+                                timer.cancel();
                             Intent homeActivity = new Intent(getApplicationContext(),HomeScreen.class);
                             startActivity(homeActivity);
                             dialog.cancel();
@@ -470,6 +501,8 @@ public class QuizScreen extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        if(isTimedMode)
+                            timer.cancel();
                         finish();
                         Intent homeActivity = new Intent(getApplicationContext(),HomeScreen.class);
                         startActivity(homeActivity);
@@ -486,28 +519,6 @@ public class QuizScreen extends AppCompatActivity {
     }
 
     //for displaying timer in timed mode
-    private void startCountDownTimer(){
-
-        long startFrom = millisInFuture;
-        timer = new CountDownTimer(startFrom, 1000) {
-            @Override
-            public void onTick(long millisLeft) {
-                setTxtTimerValue(millisLeft);
-            }
-
-            @Override
-            public void onFinish() {
-                setTxtTimerValue(0);
-                if(!isQuizCompleted){
-                    Toast.makeText(getApplicationContext(),"Oops..Time out!",Toast.LENGTH_LONG).show();
-                    Intent homeActivity = new Intent(getApplicationContext(),HomeScreen.class);
-                    startActivity(homeActivity);
-                }
-
-            }
-        }.start();
-    }
-
     public void setTxtTimerValue(long millis){
         minutes = millis / 60000;
         seconds = (millis / 1000) % 60;
