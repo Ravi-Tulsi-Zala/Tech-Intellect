@@ -5,6 +5,7 @@ package com.example.trailblazers.techintellect;
  Author: Aravind
  Date of creation: 11-Nov-2018
  *************************************************************************************************************************************************************/
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
@@ -63,6 +64,21 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
         };
 
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            if (key.equals("haptic")) {
+                boolean test = sharedPreferences.getBoolean("haptic", false);
+                isVibrateSwitchOn = test;
+            }
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            boolean test = preferences.getBoolean("haptic", false);
+            isVibrateSwitchOn = test;
+        }
     }
 }
 

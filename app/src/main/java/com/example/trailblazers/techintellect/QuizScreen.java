@@ -9,6 +9,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -24,8 +26,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,6 +72,7 @@ public class QuizScreen extends AppCompatActivity {
     private CountDownTimer timer;
     private long millisInFuture,minutes, seconds = 0;
     private boolean isQuizCompleted = false;
+    private boolean isVibrate;
     //Added by Aravind - Ends
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +134,9 @@ public class QuizScreen extends AppCompatActivity {
         mode = bundle.getString("mode");
 
         vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        boolean test = sharedPreferences.getBoolean("haptic", false);
+        isVibrate = test;
 
         questionTextView = findViewById(R.id.questionMain);
         option1 = findViewById(R.id.optionA);
@@ -202,7 +210,7 @@ public class QuizScreen extends AppCompatActivity {
                     MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.wronganswer);
                     mediaPlayer.start();
                     //Added by Haritha - ends
-                    boolean isVibrate = SettingsActivity.isVibrateSwitchOn;
+                    //boolean isVibrate = SettingsActivity.isVibrateSwitchOn;
                     if(isVibrate)
                      vibe.vibrate(500);
                     correct_answer.setTextColor(0xFFFF0000);
