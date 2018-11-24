@@ -227,7 +227,7 @@ public class QuizScreen extends AppCompatActivity {
                         }
                     };
                     Handler h = new Handler();
-                    h.postDelayed(r, 4000); // <-- the "4000" is the delay time in miliseconds.
+                    h.postDelayed(r, 2000); // <-- the "2000" is the delay time in miliseconds.
 
                 }
                 //when the answer is correct
@@ -256,7 +256,7 @@ public class QuizScreen extends AppCompatActivity {
                         }
                     };
                     Handler h = new Handler();
-                    h.postDelayed(r, 4000); // <-- the "4000" is the delay time in miliseconds.
+                    h.postDelayed(r, 2000); // <-- the "2000" is the delay time in miliseconds.
                 }
       }
 
