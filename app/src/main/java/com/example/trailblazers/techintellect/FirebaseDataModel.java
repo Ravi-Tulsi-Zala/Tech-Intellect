@@ -2,24 +2,24 @@ package com.example.trailblazers.techintellect;
 
 public class FirebaseDataModel {
 
-    public static String Topic;
-    public static String Level;
-    public static String Dash[];
+    public String topic;
+    public String level;
+
 
     public String getTopic() {
-        return Topic;
+        return topic;
     }
 
     public void setTopic(String topic) {
-        Topic = topic;
+        this.topic = topic;
     }
 
     public String getLevel() {
-        return Level;
+        return level;
     }
 
     public void setLevel(String level) {
-        Level = level;
+        this.level = level;
     }
 
     public static void setDash(String[] dash) {

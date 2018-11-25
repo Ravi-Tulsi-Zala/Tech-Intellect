@@ -101,6 +101,7 @@ public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInte
                                 FirebaseAuth.getInstance().signOut();
                                 finish();
                                 Toast.makeText(getApplicationContext(), "Logged out successfully! ", Toast.LENGTH_LONG).show();
+                                Tab1.flist.clear();
                                 Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
                                 startActivity(mainActivity);
                             }

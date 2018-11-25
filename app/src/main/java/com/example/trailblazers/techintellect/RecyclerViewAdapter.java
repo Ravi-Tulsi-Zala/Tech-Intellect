@@ -27,9 +27,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.context=context;
     }
 
-
-
-
     @Override
     public RecyclerViewHolder onCreateViewHolder( ViewGroup viewGroup, int i) {
 

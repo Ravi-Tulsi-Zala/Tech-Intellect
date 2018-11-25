@@ -30,6 +30,7 @@ public class Dashboard_Intent extends AppCompatActivity {
 
         ArrayList<QuestionAnswerModel> qalist = RecyclerViewAdapter.QAlist();
 
+
         recyclerView = (RecyclerView) findViewById(R.id.RecycleQA);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
