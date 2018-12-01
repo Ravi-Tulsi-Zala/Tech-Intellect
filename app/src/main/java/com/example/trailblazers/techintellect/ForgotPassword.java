@@ -89,8 +89,8 @@ public class ForgotPassword extends AppCompatActivity {
 
         ConnectivityManager connectivity = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        if (connectivity != null)
-        {
+        if (connectivity != null) {
+
             NetworkInfo[] info = connectivity.getAllNetworkInfo();
 
             if (info != null)
@@ -103,6 +103,8 @@ public class ForgotPassword extends AppCompatActivity {
                     }
 
         }
+
+        Toast.makeText(getApplicationContext(), "No Internet connection!", Toast.LENGTH_SHORT).show();
         return false;
     }
 

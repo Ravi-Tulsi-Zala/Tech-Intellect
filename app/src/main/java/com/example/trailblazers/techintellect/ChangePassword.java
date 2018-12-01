@@ -62,16 +62,16 @@ public class ChangePassword extends AppCompatActivity {
         else {
             cp_submitBtn.setVisibility(View.GONE);
             cp_old_password.setFocusable(false);
-            cp_old_password.setEnabled(false);
             cp_old_password.setCursorVisible(false);
+            cp_old_password.setEnabled(false);
             cp_old_password.setKeyListener(null);
             cp_newPassword.setFocusable(false);
-            cp_newPassword.setEnabled(false);
             cp_newPassword.setCursorVisible(false);
+            cp_newPassword.setEnabled(false);
             cp_newPassword.setKeyListener(null);
-            cp_confirmPassword.setFocusable(false);
             cp_confirmPassword.setEnabled(false);
             cp_confirmPassword.setCursorVisible(false);
+            cp_confirmPassword.setFocusable(false);
             cp_confirmPassword.setKeyListener(null);
             guestError.setText("Sorry, This feature does not work with a guest user.");
         }
@@ -107,6 +107,10 @@ public class ChangePassword extends AppCompatActivity {
 
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(getApplicationContext(), "Password updated", Toast.LENGTH_SHORT).show();
+                                                    cp_old_password.setText("");
+                                                    cp_newPassword.setText("");
+                                                    cp_confirmPassword.setText("");
+                                                    cp_confirmPassword.clearFocus();
                                                 } else {
                                                     Toast.makeText(getApplicationContext(), "Sorry! Password could not be updated", Toast.LENGTH_SHORT).show();
                                                 }
@@ -148,18 +152,22 @@ public class ChangePassword extends AppCompatActivity {
 
         ConnectivityManager connectivity = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        if (connectivity != null)
-        {
+        if (connectivity != null) {
+
             NetworkInfo[] info = connectivity.getAllNetworkInfo();
 
             if (info != null)
+
                 for(int i = 0; i < info.length; i++)
+
                     if (info[i].getState() == NetworkInfo.State.CONNECTED)
                     {
                         return true;
                     }
 
         }
+
+        Toast.makeText(getApplicationContext(), "No Internet connection!", Toast.LENGTH_SHORT).show();
         return false;
     }
 
@@ -172,17 +180,17 @@ public class ChangePassword extends AppCompatActivity {
     {
 
         if(isEmpty(cp_old_password)){
-            Toast.makeText(getApplicationContext(), "Please provide your old password....", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please provide your old Password", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if(isEmpty(cp_newPassword)){
-            Toast.makeText(getApplicationContext(), "Please provide your new password....", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please provide your new Password", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if(isEmpty(cp_confirmPassword)){
-            Toast.makeText(getApplicationContext(), "Please confirm your new password....", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please confirm your new Password", Toast.LENGTH_SHORT).show();
             return false;
         }
 
