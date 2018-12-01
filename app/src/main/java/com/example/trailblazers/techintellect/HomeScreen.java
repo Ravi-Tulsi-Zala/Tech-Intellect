@@ -140,6 +140,12 @@ public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInte
                 alertDialog2.show();
                 return true;
             //Added by Haritha for logout functionality - Ends
+            //Added by Aravind for help screen - Starts
+            case R.id.action_help:
+                Intent help = new Intent(this,HelpScreen.class);
+                startActivity(help);
+                break;
+            //Added by Aravind for help screen - Ends
             default:
 
 

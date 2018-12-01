@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TechIntellect</string>
+    <string name="app_name">Tech Intellect</string>
     <string name="register">Register</string>
     <string name="sign_up">Sign up</string>
     <string name="already_have_account">Already have an account?</string>
@@ -62,5 +62,39 @@
 
     <string name="changePassword_key">Change Password</string>
     <string name="change_password">Change Password</string>
+
+    <string name="application_intro">Tech Intellect is a technical quiz application that tests the users on some interesting topics like
+        Natural Language Processing, Computer Science Acronyms, R Programming, and Google go.
+    </string>
+    <string name="FAQ">FAQ</string>
+    <string name="faq_1">How to sign in to the application?</string>
+    <string name="faq_1_ans">You can sign in to the application using the registered email address and password.
+        Users can also use the app by signing in as a guest.
+    </string>
+    <string name="faq_2">How to choose the topic and difficulty level?</string>
+    <string name="faq_2_ans">Tech Intellect allows users to choose their level of expertise.This can be done by signing into the app and
+        navigating to the home screen. The home screen let the users choose their topic, difficulty level, and the mode of the quiz.
+    </string>
+    <string name="faq_3">What are timed and endless modes?</string>
+    <string name="faq_3_ans">The application delivers the quiz to users in two different modes, namely Timed and Endless.
+        Timed mode forces the users to finish the quiz within a stipulated time depending on the difficulty level and
+        Endless mode allows the users to take the quiz and learn on their own pace.
+    </string>
+    <string name="faq_4">What is the use of dashboard?</string>
+    <string name="faq_4_ans">The dashboard allows the users to revisit their past learning history. Once a quiz is successfully completed, the
+        corresponding quiz will be created dynamically under the dashboard tab. On clicking it, users can go through the questions and answers
+        that was asked in the quiz. Note that this feature is not available for guest users.
+    </string>
+    <string name="faq_5">What if I forget my password?</string>
+    <string name="faq_5_ans">Registered users can reset their password using the forgot password screen. The users would be notified by an email
+        for resetting the password.
+    </string>
+    <string name="faq_6">How to control the vibration and buzzer sound?</string>
+    <string name="faq_6_ans">Both vibration and buzzer sound features can be turned on/off under the settings menu.
+    </string>
+
+    <string name="contact">Contact us</string>
+    <string name="further_queries">For further queries, please feel free to reach us at: </string>
+    <string name="email">haritha.desikan@dal.ca</string>
 
 </resources>

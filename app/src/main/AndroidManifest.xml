@@ -52,6 +52,11 @@
         </activity>
 	<activity android:name=".Dashboard_Intent">
         </activity>
+        <activity
+            android:name=".HelpScreen"
+            android:parentActivityName=".HomeScreen"
+            android:label="@string/menubar_item_zero">
+        </activity>
     </application>
 
 </manifest>
