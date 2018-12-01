@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,6 +36,7 @@ public class ChangePassword extends AppCompatActivity {
     private EditText cp_newPassword;
     private EditText cp_confirmPassword;
     private Button cp_submitBtn;
+    private TextView guestError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +52,35 @@ public class ChangePassword extends AppCompatActivity {
         cp_confirmPassword = findViewById(R.id.cp_confirmPassword);
         cp_submitBtn = findViewById(R.id.cp_submitBtn);
 
+        guestError = findViewById(R.id.guestError);
+
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(user != null){
+            guestError.setText("");
+        }
+        else {
+            cp_submitBtn.setVisibility(View.GONE);
+            cp_old_password.setFocusable(false);
+            cp_old_password.setEnabled(false);
+            cp_old_password.setCursorVisible(false);
+            cp_old_password.setKeyListener(null);
+            cp_newPassword.setFocusable(false);
+            cp_newPassword.setEnabled(false);
+            cp_newPassword.setCursorVisible(false);
+            cp_newPassword.setKeyListener(null);
+            cp_confirmPassword.setFocusable(false);
+            cp_confirmPassword.setEnabled(false);
+            cp_confirmPassword.setCursorVisible(false);
+            cp_confirmPassword.setKeyListener(null);
+            guestError.setText("Sorry, This feature does not work with a guest user.");
+        }
+
 
         cp_submitBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
 
-                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String email = user.getEmail();
 
                 String password = cp_old_password.getText().toString();
