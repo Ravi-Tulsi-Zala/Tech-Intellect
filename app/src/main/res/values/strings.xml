@@ -96,5 +96,9 @@
     <string name="contact">Contact us</string>
     <string name="further_queries">For further queries, please feel free to reach us at: </string>
     <string name="email">haritha.desikan@dal.ca</string>
+    
+    <string name="sound_key">sound</string>
+    <string name="buzzer_sound">Buzzer</string>
+    <string name="summary_buzzer_sound">Buzzer sound for right and wrong answer</string>
 
 </resources>

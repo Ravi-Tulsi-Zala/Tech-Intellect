@@ -72,6 +72,7 @@ public class QuizScreen extends AppCompatActivity {
     private boolean isVibrate;
     private boolean isTimedMode;
     //Added by Aravind - Ends
+    private boolean isSound; //Added by Haritha
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,7 +138,11 @@ public class QuizScreen extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean test = sharedPreferences.getBoolean("haptic", false);
         isVibrate = test;
-
+        //Added by Haritha - Starts
+        SharedPreferences sharedPreferences2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        boolean soundVal = sharedPreferences2.getBoolean("sound", false);
+        isSound = soundVal;
+        //Added by Haritha - ends
         questionTextView = findViewById(R.id.questionMain);
         option1 = findViewById(R.id.optionA);
         option2 = findViewById(R.id.optionB);
@@ -228,8 +233,10 @@ public class QuizScreen extends AppCompatActivity {
                 //when the user answer is wrong
                 if(!radioButton.getText().toString().equalsIgnoreCase(correctAnswerValue)){
                     //Added by Haritha - starts
-                    MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.wronganswer);
-                    mediaPlayer.start();
+                    if(isSound){
+                        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.wronganswer);
+                        mediaPlayer.start();
+                    }
                     //Added by Haritha - ends
                     //boolean isVibrate = SettingsActivity.isVibrateSwitchOn;
                     if(isVibrate)
@@ -265,8 +272,10 @@ public class QuizScreen extends AppCompatActivity {
                 //when the answer is correct
                 else{
                     //Added by Haritha - starts
-                    MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.correctanswer);
-                    mediaPlayer.start();
+                    if(isSound){
+                        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.correctanswer);
+                        mediaPlayer.start();
+                    }
                     //Added by Haritha - ends
                     correct_answer.setTextColor(0xFF00FF00);
                     correct_answer.setText("You got it correct!");

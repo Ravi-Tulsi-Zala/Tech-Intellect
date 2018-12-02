@@ -16,6 +16,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     public static final String KEY_PREF_SWITCH = "vibrate_switch";
     public static boolean isVibrateSwitchOn;
+    public static boolean isSoundOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             // vibrate switch change listener
             bindPreferenceSummaryToValue(findPreference(getString(R.string.haptic_key)));
+            //Added by hartiha - starts
+            //sound switch change listener
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.sound_key)));
+            //Added by hartiha - ends
 
         }
 
@@ -69,6 +74,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 boolean test = sharedPreferences.getBoolean("haptic", false);
                 isVibrateSwitchOn = test;
             }
+            //Added by hartiha - starts
+            if (key.equals("sound")) {
+                boolean test = sharedPreferences.getBoolean("sound", false);
+                isSoundOn = test;
+            }
+            //Added by hartiha - ends
         }
 
         @Override
@@ -78,6 +89,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
             boolean test = preferences.getBoolean("haptic", false);
             isVibrateSwitchOn = test;
+            //Added by hartiha - starts
+            SharedPreferences preferences2 = PreferenceManager.getDefaultSharedPreferences(getContext());
+            boolean test2 = preferences2.getBoolean("sound", false);
+            isSoundOn = test;
+            //Added by hartiha - ends
         }
     }
 }

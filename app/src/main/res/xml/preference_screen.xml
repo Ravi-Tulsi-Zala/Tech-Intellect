@@ -6,7 +6,12 @@
         android:key="@string/haptic_key"
         android:title="@string/haptic_feedback"
         android:summary="@string/summary_vibrate"/>
-
+    <!-- Switch for enabling/disabling buzzer sound feature -->
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/sound_key"
+        android:title="@string/buzzer_sound"
+        android:summary="@string/summary_buzzer_sound"/>
     <!-- Change Password feature -->
     <PreferenceScreen android:title="@string/change_password">
 
