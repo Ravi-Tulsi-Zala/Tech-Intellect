@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                intent.putExtra("Guest",1);
                 startActivity(intent);
 
             }
