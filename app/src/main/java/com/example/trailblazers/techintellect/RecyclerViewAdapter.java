@@ -12,6 +12,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +27,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     Context context;
     List<FirebaseDataModel> list;
+    private Firebase ref;
+    private int number=0;
+    private int noneed;
+
+
+
+    public  FirebaseDataModel mylist;
 
     public RecyclerViewAdapter(Context context, List<FirebaseDataModel> list)
     {
@@ -39,43 +53,69 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder( RecyclerViewHolder recyclerViewHolder, int i) {
        // String topicName = topicNames[i];
 
-        FirebaseDataModel mylist = list.get(i);
+         mylist = list.get(i);
 
-        recyclerViewHolder.topic.setText(mylist.getTopic()+" "+mylist.getLevel());
+        recyclerViewHolder.topic.setText(mylist.getTopic()+" \n \n "+mylist.getLevel());
 
 
         recyclerViewHolder.linearRecycler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context,"Hi",Toast.LENGTH_SHORT).show();
-                ArrayList<QuestionAnswerModel> questionAnswerModelArrayList = new ArrayList<QuestionAnswerModel>();
-
+                //ArrayList<QuestionAnswerModel> questionAnswerModelArrayList = new ArrayList<QuestionAnswerModel>();
+                initialise();
                 Intent intent = new Intent(context,Dashboard_Intent.class);
 
                 context.startActivity(intent);
             }
         });
     }
-    public static ArrayList<QuestionAnswerModel> QAlist(){
-        ArrayList<QuestionAnswerModel> qalist = new ArrayList<>();
-        qalist.add(new QuestionAnswerModel("Google Go","Google Go answer"));
-        qalist.add(new QuestionAnswerModel("Acronyms","Acronyms answer"));
-        qalist.add(new QuestionAnswerModel("R","R answer"));
-        qalist.add(new QuestionAnswerModel("NLP","NLP answer"));
-        qalist.add(new QuestionAnswerModel("Google Go","Google Go answer"));
-        qalist.add(new QuestionAnswerModel("Acronyms","Acronyms answer"));
-        qalist.add(new QuestionAnswerModel("R","R answer"));
-        qalist.add(new QuestionAnswerModel("NLP","NLP answer"));
-        qalist.add(new QuestionAnswerModel("Google Go","Google Go answer"));
-        qalist.add(new QuestionAnswerModel("Acronyms","Acronyms answer"));
-        qalist.add(new QuestionAnswerModel("R","R answer"));
-        qalist.add(new QuestionAnswerModel("NLP","NLP answer"));
-        qalist.add(new QuestionAnswerModel("Google Go","Google Go answer"));
-        qalist.add(new QuestionAnswerModel("Acronyms","Acronyms answer"));
-        qalist.add(new QuestionAnswerModel("R","R answer"));
-        qalist.add(new QuestionAnswerModel("NLP","NLP answer"));
-        return qalist;
+
+
+    String topic = mylist.getTopic();
+    String level = mylist.getLevel();
+    public String firebaseurl = makeUrl(topic,level);
+
+    public void initialise()
+    {
+        ref = new Firebase(firebaseurl+""+number+"/Question");
+
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<QuestionAnswerModel> questionAnswerModelArrayList = new ArrayList<QuestionAnswerModel>();
+
+
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
     }
+
+    public String makeUrl(String topic, String level){
+        String Url;
+        if(topic!=null && topic.equalsIgnoreCase("Google Go")){
+            if(level!=null && level.equalsIgnoreCase("Easy")){
+                Url = "https://tech-intellect-3dd39.firebaseio.com/easy_go/";
+                return Url;
+            }
+            if(level!=null && level.equalsIgnoreCase("Medium")){
+                Url = "https://tech-intellect-3dd39.firebaseio.com/medium_go/";
+                return Url;
+            }
+            if(level!=null && level.equalsIgnoreCase("Hard")){
+
+            }
+        }
+        return "Success";
+    }
+
     @Override
     public int getItemCount() {
         int arr=0;

@@ -22,8 +22,5 @@ public class FirebaseDataModel {
         this.level = level;
     }
 
-    public static void setDash(String[] dash) {
-
-    }
 
 }
