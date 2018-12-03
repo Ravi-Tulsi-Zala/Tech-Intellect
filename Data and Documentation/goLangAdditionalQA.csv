@@ -1,0 +1,11 @@
+Question,Answer choice 1,Answer choice 2,Answer choice 3,Answer choice 4 ,Correct answer
+"A Go program consists of various tokens, which one does not support?",Number,Symbol,String Literal,Keyword,Number
+How to define a slice in Go?,var numbers int[],var numbers []int,var numbers int(),var numbers int:,var numbers []int
+What is type casting in Go?,convert a variable from one data type to another,convert a Object  to ArrayObject,Change size of Array,Duplicates variable,convert a variable from one data type to another
+Which one is true for lvalue and rvalue?,designate to a variable not a constant,designate to a variable constant,rvalue = exp on left side of the assignment operator,lvalue = exp on Right side of the assignment operator,designate to a variable not a constant
+"How to Print type of variable? var a, b, c = 3, 4, ""foo""","fmt.Printf(""a is of type %T\n"", a)","wmt.Printf(""a is of type %T\n"", a)","wmt.Printf(""a is of type %R\n"", a)","fmt.PrintOut(""a is of type %R\n"", a)","fmt.Printf(""a is of type %T\n"", a)"
+which one is true to define and call function in Go?,"func f(n int) {}, go func(0)","function f(n int) {}, function(0)","function f(n int) {}, go f(0)","func f(n int) {}, go f(0)","func f(n int) {}, go f(0)"
+which exceptions Go lang supports?,try,catch,finally,does not support exceptions,does not support exceptions
+"""len"" can be referred as a?",method,funtion,length is true intsead of len,There is no such a thing as len in GO,function
+What are untagged unions in GO?,Perform bit-level conversions between types,Space to store a data type tag,To handle memory,There are no untagged union in GO,There are no untagged union in GO
+Go lang doesn't have,Variant types,covariant result types,Implicit numeric conversions,All of the above,All of the above

@@ -1,0 +1,82 @@
+[
+  {
+    "Question": "A Go program consists of various tokens, which one does not support?",
+    "Answer choice 1": "Number",
+    "Answer choice 2": "Symbol",
+    "Answer choice 3": "String Literal",
+    "Answer choice 4": "Keyword",
+    "Correct answer": "Number"
+  },
+  {
+    "Question": "How to define a slice in Go?",
+    "Answer choice 1": "var numbers int[]",
+    "Answer choice 2": "var numbers []int",
+    "Answer choice 3": "var numbers int()",
+    "Answer choice 4": "var numbers int:",
+    "Correct answer": "var numbers []int"
+  },
+  {
+    "Question": "What is type casting in Go?",
+    "Answer choice 1": "convert a variable from one data type to another",
+    "Answer choice 2": "convert a Object  to ArrayObject",
+    "Answer choice 3": "Change size of Array",
+    "Answer choice 4": "Duplicates variable",
+    "Correct answer": "convert a variable from one data type to another"
+  },
+  {
+    "Question": "Which one is true for lvalue and rvalue?",
+    "Answer choice 1": "designate to a variable not a constant",
+    "Answer choice 2": "designate to a variable constant",
+    "Answer choice 3": "rvalue = exp on left side of the assignment operator",
+    "Answer choice 4": "lvalue = exp on Right side of the assignment operator",
+    "Correct answer": "designate to a variable not a constant"
+  },
+  {
+    "Question": "How to Print type of variable? var a, b, c = 3, 4, \"foo",
+    "Answer choice 1": "fmt.Printf(\"a is of type %T\\n\", a)",
+    "Answer choice 2": "wmt.Printf(\"a is of type %T\\n\", a)",
+    "Answer choice 3": "wmt.Printf(\"a is of type %R\\n\", a)",
+    "Answer choice 4": "fmt.PrintOut(\"a is of type %R\\n\", a)",
+    "Correct answer": "fmt.Printf(\"a is of type %T\\n\", a)"
+  },
+  {
+    "Question": "which one is true to define and call function in Go?",
+    "Answer choice 1": "func f(n int) {}, go func(0)",
+    "Answer choice 2": "function f(n int) {}, function(0)",
+    "Answer choice 3": "function f(n int) {}, go f(0)",
+    "Answer choice 4": "func f(n int) {}, go f(0)",
+    "Correct answer": "func f(n int) {}, go f(0)"
+  },
+  {
+    "Question": "which exceptions Go lang supports?",
+    "Answer choice 1": "try",
+    "Answer choice 2": "catch",
+    "Answer choice 3": "finally",
+    "Answer choice 4": "does not support exceptions",
+    "Correct answer": "does not support exceptions"
+  },
+  {
+    "Question": "len\" can be referred as a?",
+    "Answer choice 1": "method",
+    "Answer choice 2": "funtion",
+    "Answer choice 3": "length is true intsead of len",
+    "Answer choice 4": "There is no such a thing as len in GO",
+    "Correct answer": "function"
+  },
+  {
+    "Question": "What are untagged unions in GO?",
+    "Answer choice 1": "Perform bit-level conversions between types",
+    "Answer choice 2": "Space to store a data type tag",
+    "Answer choice 3": "To handle memory",
+    "Answer choice 4": "There are no untagged union in GO",
+    "Correct answer": "There are no untagged union in GO"
+  },
+  {
+    "Question": "Go lang doesn't have",
+    "Answer choice 1": "Variant types",
+    "Answer choice 2": "covariant result types",
+    "Answer choice 3": "Implicit numeric conversions",
+    "Answer choice 4": "All of the above",
+    "Correct answer": "All of the above"
+  }
+]
