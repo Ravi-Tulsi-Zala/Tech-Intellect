@@ -39,9 +39,12 @@ public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInte
         TabLayout tabLayout = findViewById(R.id.tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("Learn"));
 
+        if(!MainActivity.signInGuestflag)
+        {
+            tabLayout.addTab(tabLayout.newTab().setText("Dashboard"));
+            MainActivity.signInGuestflag=false;
 
-        tabLayout.addTab(tabLayout.newTab().setText("Dashboard"));
-
+        }
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
@@ -106,6 +109,8 @@ public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInte
                                 finish();
                                 Toast.makeText(getApplicationContext(), "Logged out successfully! ", Toast.LENGTH_LONG).show();
                                 Tab1.flist.clear();
+                                MainActivity.signInGuestflag = false;
+
                                 Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
                                 startActivity(mainActivity);
                             }
@@ -119,7 +124,7 @@ public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInte
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
                 break;
-                //Handling the back button (in task bar) logout
+            //Handling the back button (in task bar) logout
             case android.R.id.home:
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(HomeScreen.this);
                 builder2.setMessage("Going back would end the session. Are you sure you want to proceed?")
@@ -131,6 +136,7 @@ public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInte
                                 finish();
                                 Toast.makeText(getApplicationContext(), "Logged out successfully! ", Toast.LENGTH_LONG).show();
                                 Intent mainActivity1 = new Intent(getApplicationContext(),MainActivity.class);
+                                MainActivity.signInGuestflag = false;
                                 startActivity(mainActivity1);
                             }
                         })
@@ -188,6 +194,7 @@ public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInte
                         finish();
                         Toast.makeText(getApplicationContext(), "Logged out successfully! ", Toast.LENGTH_LONG).show();
                         Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
+                        MainActivity.signInGuestflag = false;
                         startActivity(mainActivity);
                     }
                 })

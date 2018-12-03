@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText etPassword;
     private FirebaseAuth authentication;
     private Button btnGuest;
+    public static boolean signInGuestflag = false;
+
     //Added by Ravi Ends
 
     private TextView btn_forgoPwd; //Added by Yash
@@ -83,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
-                //intent.putExtra("Guest",1);
+                signInGuestflag = true;
                 startActivity(intent);
 
             }
@@ -108,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                                         if (task.isSuccessful()) {
 
                                             Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                                            //intent.putExtra("user","user");
                                             startActivity(intent);
                                             //Toast.makeText(MainActivity.this,"Login Successful",Toast.LENGTH_LONG).show();
                                         } else {
@@ -152,10 +155,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-protected void hide(View view){
-    InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-    in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-}
+    protected void hide(View view){
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
     boolean isEmail(EditText text){
         CharSequence input = text.getText().toString();
         return (!TextUtils.isEmpty(input) && Patterns.EMAIL_ADDRESS.matcher(input).matches());
