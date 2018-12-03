@@ -93,9 +93,8 @@ public class Tab1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tab1, container, false);
 
         welcome = view.findViewById(R.id.welcome);
-        Intent intent = new Intent(getContext(),MainActivity.class);
-        boolean id = intent.getBooleanExtra("Guest",false);
-        if(firebaseUser != null && (id) ){
+
+        if(firebaseUser != null  ){
             welcome.setText("Welcome " +firebaseUser.getDisplayName());
         }
         else{
