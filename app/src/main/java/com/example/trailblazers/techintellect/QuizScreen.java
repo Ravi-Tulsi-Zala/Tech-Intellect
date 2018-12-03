@@ -497,6 +497,23 @@ public class QuizScreen extends AppCompatActivity {
                 return Url;
             }
         }
+        //Added by Haritha - starts
+        //R programming url
+        else if(topic !=null && topic.equalsIgnoreCase("R Programming")){
+            if(level !=null && level.equalsIgnoreCase("Easy")){
+                Url = "https://tech-intellect-3dd39.firebaseio.com/R_easy/";
+                return Url;
+            }
+            if(level !=null && level.equalsIgnoreCase("Medium")){
+                Url = "https://tech-intellect-3dd39.firebaseio.com/R_medium/";
+                return Url;
+            }
+            if(level !=null && level.equalsIgnoreCase("Hard")){
+                Url = "https://tech-intellect-3dd39.firebaseio.com/R_hard/";
+                return Url;
+            }
+        }
+        //Added by Haritha - ends
         return "success";
 
     }
