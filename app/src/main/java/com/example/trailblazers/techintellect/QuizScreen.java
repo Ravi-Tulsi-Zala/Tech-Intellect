@@ -135,6 +135,7 @@ public class QuizScreen extends AppCompatActivity {
         mode = bundle.getString("mode");
 
         vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        PreferenceManager.setDefaultValues(this, R.xml.preference_screen, false);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean test = sharedPreferences.getBoolean("haptic", false);
         isVibrate = test;
