@@ -28,7 +28,7 @@ public class Dashboard_Intent extends AppCompatActivity {
         question = (TextView)findViewById(R.id.question);
         answer = (TextView)findViewById(R.id.answer);
 
-        //ArrayList<QuestionAnswerModel> qalist = RecyclerViewAdapter.QAlist();
+        ArrayList<QuestionAnswerModel> qalist = RecyclerViewAdapter.QAlist();
 
 
         recyclerView = (RecyclerView) findViewById(R.id.RecycleQA);
@@ -38,7 +38,7 @@ public class Dashboard_Intent extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(),qalist.size(),Toast.LENGTH_SHORT).show();
        // System.out.println(qalist.size());
 
-       // recyclerViewAdapter = new QuestionAnswerAdapter(getApplicationContext(),qalist);
+        recyclerViewAdapter = new QuestionAnswerAdapter(getApplicationContext(),qalist);
         recyclerView.setAdapter(recyclerViewAdapter);
 
         recyclerView.setLayoutManager(layoutManager);

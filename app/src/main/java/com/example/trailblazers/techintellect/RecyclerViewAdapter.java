@@ -12,128 +12,87 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder>
-{
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> {
 
     Context context;
     List<FirebaseDataModel> list;
-    private Firebase ref;
-    private int number=0;
-    private int noneed;
 
 
-
-    public  FirebaseDataModel mylist;
-
-    public RecyclerViewAdapter(Context context, List<FirebaseDataModel> list)
-    {
-        this.list=list;
-        this.context=context;
+    public RecyclerViewAdapter(Context context, List<FirebaseDataModel> list) {
+        this.list = list;
+        this.context = context;
     }
 
     @Override
-    public RecyclerViewHolder onCreateViewHolder( ViewGroup viewGroup, int i) {
+    public RecyclerViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
-        View view = layoutInflater.inflate(R.layout.linear_recycler_layout,viewGroup,false);
+        View view = layoutInflater.inflate(R.layout.linear_recycler_layout, viewGroup, false);
         return new RecyclerViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder( RecyclerViewHolder recyclerViewHolder, int i) {
-       // String topicName = topicNames[i];
+    public void onBindViewHolder(RecyclerViewHolder recyclerViewHolder, int i) {
+        // String topicName = topicNames[i];
 
-         mylist = list.get(i);
+        FirebaseDataModel mylist = list.get(i);
 
-        recyclerViewHolder.topic.setText(mylist.getTopic()+" \n \n "+mylist.getLevel());
-
+        recyclerViewHolder.topic.setText(mylist.getTopic() + " " + mylist.getLevel());
 
         recyclerViewHolder.linearRecycler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"Hi",Toast.LENGTH_SHORT).show();
-                //ArrayList<QuestionAnswerModel> questionAnswerModelArrayList = new ArrayList<QuestionAnswerModel>();
-                initialise();
-                Intent intent = new Intent(context,Dashboard_Intent.class);
+                Toast.makeText(context, "Hi", Toast.LENGTH_SHORT).show();
+                ArrayList<QuestionAnswerModel> questionAnswerModelArrayList = new ArrayList<QuestionAnswerModel>();
+
+                Intent intent = new Intent(context, Dashboard_Intent.class);
 
                 context.startActivity(intent);
             }
         });
     }
 
-
-    String topic = mylist.getTopic();
-    String level = mylist.getLevel();
-    public String firebaseurl = makeUrl(topic,level);
-
-    public void initialise()
-    {
-        ref = new Firebase(firebaseurl+""+number+"/Question");
-
-
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<QuestionAnswerModel> questionAnswerModelArrayList = new ArrayList<QuestionAnswerModel>();
-
-
-
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-
-    }
-
-    public String makeUrl(String topic, String level){
-        String Url;
-        if(topic!=null && topic.equalsIgnoreCase("Google Go")){
-            if(level!=null && level.equalsIgnoreCase("Easy")){
-                Url = "https://tech-intellect-3dd39.firebaseio.com/easy_go/";
-                return Url;
-            }
-            if(level!=null && level.equalsIgnoreCase("Medium")){
-                Url = "https://tech-intellect-3dd39.firebaseio.com/medium_go/";
-                return Url;
-            }
-            if(level!=null && level.equalsIgnoreCase("Hard")){
-
-            }
-        }
-        return "Success";
+    public static ArrayList<QuestionAnswerModel> QAlist() {
+        ArrayList<QuestionAnswerModel> qalist = new ArrayList<>();
+        qalist.add(new QuestionAnswerModel("Google Go", "Google Go answer"));
+        qalist.add(new QuestionAnswerModel("Acronyms", "Acronyms answer"));
+        qalist.add(new QuestionAnswerModel("R", "R answer"));
+        qalist.add(new QuestionAnswerModel("NLP", "NLP answer"));
+        qalist.add(new QuestionAnswerModel("Google Go", "Google Go answer"));
+        qalist.add(new QuestionAnswerModel("Acronyms", "Acronyms answer"));
+        qalist.add(new QuestionAnswerModel("R", "R answer"));
+        qalist.add(new QuestionAnswerModel("NLP", "NLP answer"));
+        qalist.add(new QuestionAnswerModel("Google Go", "Google Go answer"));
+        qalist.add(new QuestionAnswerModel("Acronyms", "Acronyms answer"));
+        qalist.add(new QuestionAnswerModel("R", "R answer"));
+        qalist.add(new QuestionAnswerModel("NLP", "NLP answer"));
+        qalist.add(new QuestionAnswerModel("Google Go", "Google Go answer"));
+        qalist.add(new QuestionAnswerModel("Acronyms", "Acronyms answer"));
+        qalist.add(new QuestionAnswerModel("R", "R answer"));
+        qalist.add(new QuestionAnswerModel("NLP", "NLP answer"));
+        return qalist;
     }
 
     @Override
     public int getItemCount() {
-        int arr=0;
-        try{
-            if(list.size()==0){
+        int arr = 0;
+        try {
+            if (list.size() == 0) {
 
                 arr = 0;
 
+            } else {
+
+                arr = list.size();
             }
-            else{
-
-                arr=list.size();
-            }
 
 
-
-        }catch (Exception e){
-
+        } catch (Exception e) {
 
 
         }
@@ -141,15 +100,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return arr;
     }
 
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder{
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         TextView topic;
         RelativeLayout linearRecycler;
+
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
 
             topic = (TextView) itemView.findViewById(R.id.topic);
-            linearRecycler = (RelativeLayout)itemView.findViewById(R.id.linearRecycler);
+            linearRecycler = (RelativeLayout) itemView.findViewById(R.id.linearRecycler);
         }
     }
 }
-
