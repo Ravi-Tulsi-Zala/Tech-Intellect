@@ -38,11 +38,10 @@ public class HomeScreen extends AppCompatActivity implements Tab1.OnFragmentInte
 
         TabLayout tabLayout = findViewById(R.id.tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("Learn"));
-        Intent intent = getIntent();
-        boolean id = intent.getBooleanExtra("Guest",false);
-        if (id) {
-            tabLayout.addTab(tabLayout.newTab().setText("Dashboard"));
-        }
+
+
+        tabLayout.addTab(tabLayout.newTab().setText("Dashboard"));
+
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
