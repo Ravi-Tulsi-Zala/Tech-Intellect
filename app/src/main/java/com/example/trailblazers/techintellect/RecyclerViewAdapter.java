@@ -13,6 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +26,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     Context context;
     List<FirebaseDataModel> list;
-
-
+public  static String final_topic;
+public static ArrayList<QuestionAnswerModel> qalist = new ArrayList<QuestionAnswerModel>();
     public RecyclerViewAdapter(Context context, List<FirebaseDataModel> list) {
         this.list = list;
         this.context = context;
@@ -43,13 +48,36 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         FirebaseDataModel mylist = list.get(i);
 
         recyclerViewHolder.topic.setText(mylist.getTopic() + " " + mylist.getLevel());
+        if(mylist.getTopic().contains("Go"))
+        {
+            final_topic = mylist.getLevel().toLowerCase() + "_" + "go";
 
+        }
+        else if(mylist.getTopic().contains("Natural"))
+        {
+            final_topic = mylist.getLevel().toLowerCase() + "_" + "nlp";
+
+        }
+        else if(mylist.getTopic().contains("R"))
+        {
+            final_topic = mylist.getLevel().toLowerCase() + "_" + "r";
+
+        }
+        else if(mylist.getTopic().contains("Acronyms"))
+        {
+            final_topic = mylist.getLevel().toLowerCase() + "_" + "acronyms";
+
+        }
+        else
+        {
+            ;
+        }
         recyclerViewHolder.linearRecycler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Hi", Toast.LENGTH_SHORT).show();
                 ArrayList<QuestionAnswerModel> questionAnswerModelArrayList = new ArrayList<QuestionAnswerModel>();
-
+                QAlist().clear();
                 Intent intent = new Intent(context, Dashboard_Intent.class);
 
                 context.startActivity(intent);
@@ -58,23 +86,32 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public static ArrayList<QuestionAnswerModel> QAlist() {
-        ArrayList<QuestionAnswerModel> qalist = new ArrayList<>();
-        qalist.add(new QuestionAnswerModel("Google Go", "Google Go answer"));
-        qalist.add(new QuestionAnswerModel("Acronyms", "Acronyms answer"));
-        qalist.add(new QuestionAnswerModel("R", "R answer"));
-        qalist.add(new QuestionAnswerModel("NLP", "NLP answer"));
-        qalist.add(new QuestionAnswerModel("Google Go", "Google Go answer"));
-        qalist.add(new QuestionAnswerModel("Acronyms", "Acronyms answer"));
-        qalist.add(new QuestionAnswerModel("R", "R answer"));
-        qalist.add(new QuestionAnswerModel("NLP", "NLP answer"));
-        qalist.add(new QuestionAnswerModel("Google Go", "Google Go answer"));
-        qalist.add(new QuestionAnswerModel("Acronyms", "Acronyms answer"));
-        qalist.add(new QuestionAnswerModel("R", "R answer"));
-        qalist.add(new QuestionAnswerModel("NLP", "NLP answer"));
-        qalist.add(new QuestionAnswerModel("Google Go", "Google Go answer"));
-        qalist.add(new QuestionAnswerModel("Acronyms", "Acronyms answer"));
-        qalist.add(new QuestionAnswerModel("R", "R answer"));
-        qalist.add(new QuestionAnswerModel("NLP", "NLP answer"));
+        FirebaseDatabase database;
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(final_topic);
+
+       reference.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                   QuestionAnswerModel questionAnswerModel = dataSnapshot1.getValue(QuestionAnswerModel.class);
+                   String ques = questionAnswerModel.getQuestion();
+                   String ans = questionAnswerModel.getAnswer();
+                   qalist.add(questionAnswerModel);
+               }
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError databaseError) {
+
+           }
+       });
+//        qalist.add(new QuestionAnswerModel("Acronyms", "Acronyms answer"));
+//        qalist.add(new QuestionAnswerModel("R", "R answer"));
+//        qalist.add(new QuestionAnswerModel("NLP", "NLP answer"));
+//        qalist.add(new QuestionAnswerModel("Google Go", "Google Go answer"));
+//        qalist.add(new QuestionAnswerModel("Acronyms", "Acronyms answer"));
+//        qalist.add(new QuestionAnswerModel("R", "R answer"));
+//        qalist.add(new QuestionAnswerModel("NLP", "NLP answer"));
         return qalist;
     }
 
