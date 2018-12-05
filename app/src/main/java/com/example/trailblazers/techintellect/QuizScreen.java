@@ -159,10 +159,23 @@ public class QuizScreen extends AppCompatActivity {
 
         levelView.setText(level);
         topicView.setText(topic);
-        if(mode !=null && mode.equalsIgnoreCase("Timed"))
+
+        //if the mode is timed, timer will be displayed
+        if(mode !=null && mode.equalsIgnoreCase("Timed")) {
             isTimedMode = true;
+            View div;
+            div = findViewById(R.id.div_timer);
+            div.setVisibility(View.VISIBLE);
+        }
         else
+        {
             isTimedMode = false;
+            View div;
+            div = findViewById(R.id.div_timer);
+            div.setVisibility(View.INVISIBLE);
+
+        }
+
 
         //Setting time for timed mode
         if(isTimedMode){
