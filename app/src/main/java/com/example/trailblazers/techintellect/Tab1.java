@@ -93,11 +93,12 @@ public class Tab1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tab1, container, false);
 
         welcome = view.findViewById(R.id.welcome);
+        String user = firebaseUser.getDisplayName();
 
         if(firebaseUser != null  ){
-            welcome.setText("Welcome " +firebaseUser.getDisplayName());
+            welcome.setText("Welcome " + convert(user));
         }
-        else{
+        else {
             welcome.setText("Welcome Guest");
         }
 
@@ -170,6 +171,26 @@ public class Tab1 extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    // converts first character of every word in string
+    public static String convert(String name)
+    {
+        char c[] = name.toCharArray();
+        int len = name.length();
+
+        for (int i = 0; i < len; i++) {
+
+            if (i == 0 && c[i] != ' ' || c[i] != ' ' && c[i - 1] == ' ') {
+
+                if (c[i] >= 'a' && c[i] <= 'z') {
+                    c[i] = (char)(c[i] - 'a' + 'A');
+                }
+            }
+        }
+
+        String str = new String(c);
+        return str;
     }
 
     @Override
