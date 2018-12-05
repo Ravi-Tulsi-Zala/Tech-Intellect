@@ -33,7 +33,7 @@ public class Dashboard_Intent extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.RecycleQA);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+
 
         //Toast.makeText(getApplicationContext(),qalist.size(),Toast.LENGTH_SHORT).show();
        // System.out.println(qalist.size());
@@ -41,7 +41,7 @@ public class Dashboard_Intent extends AppCompatActivity {
         recyclerViewAdapter = new QuestionAnswerAdapter(getApplicationContext(),qalist);
         recyclerView.setAdapter(recyclerViewAdapter);
 
-
+        recyclerView.setLayoutManager(layoutManager);
     }
 
 
