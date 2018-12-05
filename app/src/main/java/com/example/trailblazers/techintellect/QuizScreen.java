@@ -355,7 +355,7 @@ public class QuizScreen extends AppCompatActivity {
                 }
             });
 
-            option1Ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer choice 1");
+            option1Ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer1");
             option1Ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -369,7 +369,7 @@ public class QuizScreen extends AppCompatActivity {
                 }
             });
 
-            option2Ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer choice 2");
+            option2Ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer2");
             option2Ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -383,7 +383,7 @@ public class QuizScreen extends AppCompatActivity {
                 }
             });
 
-            option3Ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer choice 3");
+            option3Ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer3");
             option3Ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -397,7 +397,7 @@ public class QuizScreen extends AppCompatActivity {
                 }
             });
 
-            option4ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer choice 4");
+            option4ref = new Firebase(firebaseUrl+""+questionNumber+"/Answer4");
             option4ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -411,7 +411,7 @@ public class QuizScreen extends AppCompatActivity {
                 }
             });
 
-            answerRef = new Firebase(firebaseUrl+""+questionNumber+"/Correct answer");
+            answerRef = new Firebase(firebaseUrl+""+questionNumber+"/Correct_answer");
             answerRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -455,16 +455,16 @@ public class QuizScreen extends AppCompatActivity {
         String Url;
         if(topic !=null && topic.equalsIgnoreCase("Computer Science Acronyms")){
             if(level !=null && level.equalsIgnoreCase("Easy")){
-                Url = "https://tech-intellect-3dd39.firebaseio.com/acronyms_easy/";
+                Url = "https://tech-intellect-3dd39.firebaseio.com/easy_acronyms/";
                 return Url;
             }
             if(level !=null && level.equalsIgnoreCase("Medium")){
-                Url = "https://tech-intellect-3dd39.firebaseio.com/acronyms_medium/";
+                Url = "https://tech-intellect-3dd39.firebaseio.com/medium_acronyms/";
                 return Url;
             }
             //Added by Haritha - starts
             if(level !=null && level.equalsIgnoreCase("Hard")){
-                Url = "https://tech-intellect-3dd39.firebaseio.com/acronyms_hard/";
+                Url = "https://tech-intellect-3dd39.firebaseio.com/hard_acronyms/";
                 return Url;
             }
             //Added by Haritha - ends
@@ -480,21 +480,22 @@ public class QuizScreen extends AppCompatActivity {
                 return Url;
             }
             if(level !=null && level.equalsIgnoreCase("Hard")){
-
+                Url = "https://tech-intellect-3dd39.firebaseio.com/hard_go/";
+                return Url;
             }
         }
         //NLP url
         else if(topic !=null && topic.equalsIgnoreCase("Natural Language Processing")){
             if(level !=null && level.equalsIgnoreCase("Easy")){
-                Url = "https://tech-intellect-3dd39.firebaseio.com/NLP_easy/";
+                Url = "https://tech-intellect-3dd39.firebaseio.com/easy_nlp/";
                 return Url;
             }
             if(level !=null && level.equalsIgnoreCase("Medium")){
-                Url = "https://tech-intellect-3dd39.firebaseio.com/NLP_medium/";
+                Url = "https://tech-intellect-3dd39.firebaseio.com/medium_nlp/";
                 return Url;
             }
             if(level !=null && level.equalsIgnoreCase("Hard")){
-                Url = "https://tech-intellect-3dd39.firebaseio.com/NLP_hard/";
+                Url = "https://tech-intellect-3dd39.firebaseio.com/hard_nlp/";
                 return Url;
             }
         }
@@ -502,15 +503,15 @@ public class QuizScreen extends AppCompatActivity {
         //R programming url
         else if(topic !=null && topic.equalsIgnoreCase("R Programming")){
             if(level !=null && level.equalsIgnoreCase("Easy")){
-                Url = "https://tech-intellect-3dd39.firebaseio.com/R_easy/";
+                Url = "https://tech-intellect-3dd39.firebaseio.com/easy_r/";
                 return Url;
             }
             if(level !=null && level.equalsIgnoreCase("Medium")){
-                Url = "https://tech-intellect-3dd39.firebaseio.com/R_medium/";
+                Url = "https://tech-intellect-3dd39.firebaseio.com/medium_r/";
                 return Url;
             }
             if(level !=null && level.equalsIgnoreCase("Hard")){
-                Url = "https://tech-intellect-3dd39.firebaseio.com/R_hard/";
+                Url = "https://tech-intellect-3dd39.firebaseio.com/hard_r/";
                 return Url;
             }
         }
