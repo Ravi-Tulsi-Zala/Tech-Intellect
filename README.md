@@ -51,7 +51,45 @@ public boolean isConnectedToInternet(){
 ```
 ***Problem 2***: We found it difficult to implement the dynamic allocation of card layout in dashboard. The problem we are facing currently is that the cards are being overwritten instead of being appended to the previous card.
 ```
+public View onCreateView(LayoutInflater inflater, ViewGroup container,  
+                         Bundle savedInstanceState) {  
+    // Inflate the layout for this fragment  
+  View root = inflater.inflate(R.layout.fragment_tab2, container, false);  
+    RecyclerView recyclerView = (RecyclerView)root.findViewById(R.id.recyclerview);  
+    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));  
+    
+    //According to listsize cards will be formed dynamically 
+    recyclerView.setAdapter(new RecyclerViewAdapter(getContext(),Tab1.flist)); 
+    return root;  
+  
+}
+```
+***Problem 3***:  Dashboard disable functionality for guest using intent was quite difficult. 
+```
+private Button btnGuest;  
 
+//Guest flag is false in the beginning
+public static boolean signInGuestflag = false;
+```
+```
+btnGuest.setOnClickListener(new View.OnClickListener() {  
+    @Override  
+  public void onClick(View v) {  
+  
+        Intent intent = new Intent(getApplicationContext(), HomeScreen.class);  
+        signInGuestflag = true;  
+        startActivity(intent);  
+  
+    }  
+});
+```
+```
+if(!MainActivity.signInGuestflag)  
+{  
+    tabLayout.addTab(tabLayout.newTab().setText("Dashboard"));  
+    MainActivity.signInGuestflag=false;  
+  
+}
 ```
 
 ## Feature Section
@@ -106,3 +144,12 @@ A learning quiz application with login and registration module. The application 
  2. The application will repeat the wrongly answered questions to users by using a repetition algorithm. In this way, users can learn from their mistakes easily **[Not implemented]**.
 
 ## Sources
+What to include in your project sources:
+- Stock images
+- Design guides
+- Programming tutorials
+- Research material
+- Android libraries
+- Everything listed on the Dalhousie Plagiarism and Cheating pages(https://www.dal.ca/dept/university_secretariat/academic-integrity/plagiarism-cheating.html)
+
+[1] "Java (programming language)", En.wikipedia.org, 2018. [Online]. Available: https://en.wikipedia.org/wiki/Java_(programming_language).
