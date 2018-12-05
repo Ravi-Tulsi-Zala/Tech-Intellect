@@ -98,7 +98,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="85dp"
-            android:background="#5c93ed"
+            android:background="@drawable/button_shape"
             android:gravity="center"
             android:text="@string/submitBtnStr"
             android:textColor="#fff" />
@@ -108,7 +108,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:background="@android:color/holo_red_dark"
+            android:background="@drawable/button_shape_red"
             android:text="@string/quit_test"
             android:textColor="#fff" />
 
