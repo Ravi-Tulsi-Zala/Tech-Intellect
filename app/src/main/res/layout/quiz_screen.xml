@@ -21,6 +21,13 @@
         android:textColor="@android:color/holo_red_dark"
         android:textSize="20sp" />
 
+    <View
+        android:layout_width="120dp"
+        android:layout_height="1dp"
+        android:background="#000000"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+
     <TextView
         android:id="@+id/difficultyModeText"
         android:layout_width="match_parent"
