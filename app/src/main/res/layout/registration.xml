@@ -102,9 +102,12 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
         android:id="@+id/Sign_up_btn"
-        android:background="#5c93ed"
         android:text="@string/sign_up"
-        android:textColor="#fff" />
+        android:textColor="#ffffff"
+        android:background="@drawable/button_shape"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginBottom="10dp" />
     <!-- Link to login page -->
     <TextView
         android:layout_width="match_parent"
