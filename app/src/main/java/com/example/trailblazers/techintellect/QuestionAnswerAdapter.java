@@ -57,7 +57,7 @@ public class QuestionAnswerAdapter extends RecyclerView.Adapter<QuestionAnswerAd
          CardView cardView;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
-            cardView = (CardView) itemView.findViewById(R.id.QAcardview) ;
+           // cardView = (CardView) itemView.findViewById(R.id.QAcardview) ;
             question = (TextView) itemView.findViewById(R.id.question);
             answer = (TextView) itemView.findViewById(R.id.answer);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.RelativeLayout);

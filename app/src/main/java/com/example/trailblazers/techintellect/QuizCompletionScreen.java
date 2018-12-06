@@ -26,7 +26,7 @@ private ImageView trophy_image;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_completion_screen);
-
+        MainActivity.signInGuestflag=false;
         trophy_image = findViewById(R.id.trophy_img);
         main_menu_button = findViewById(R.id.take_me_home_btn);
         main_menu_button.setOnClickListener(new View.OnClickListener() {

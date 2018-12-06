@@ -37,7 +37,7 @@ public class Dashboard_Intent extends AppCompatActivity {
 
         //Toast.makeText(getApplicationContext(),qalist.size(),Toast.LENGTH_SHORT).show();
        // System.out.println(qalist.size());
-
+        recyclerView.setHasFixedSize(true);
         recyclerViewAdapter = new QuestionAnswerAdapter(getApplicationContext(),qalist);
         recyclerView.setAdapter(recyclerViewAdapter);
 

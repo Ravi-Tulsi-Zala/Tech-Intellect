@@ -324,6 +324,7 @@ public class QuizScreen extends AppCompatActivity {
         quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.signInGuestflag = true;
                 AlertDialog.Builder builder = new AlertDialog.Builder(QuizScreen.this);
                 builder.setMessage("Are you sure you want to quit?")
                         .setCancelable(false)
