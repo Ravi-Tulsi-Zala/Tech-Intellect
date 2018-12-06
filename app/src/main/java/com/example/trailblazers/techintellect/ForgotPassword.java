@@ -57,7 +57,7 @@ public class ForgotPassword extends AppCompatActivity {
                         auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
 
-                            public void onComplete(@NonNull Task<Void> task) {
+                            public void onComplete(@NonNull Task<Void> task) {          // Sends email on given email address to reset password
 
                                 if (task.isSuccessful()) {
 
@@ -75,6 +75,7 @@ public class ForgotPassword extends AppCompatActivity {
         });
     }
 
+    // Adds back button to the screen
     public boolean onOptionsItemSelected(MenuItem mItem){
 
         switch (mItem.getItemId()) {
@@ -85,6 +86,7 @@ public class ForgotPassword extends AppCompatActivity {
         return super.onOptionsItemSelected(mItem);
     }
 
+    // Checks if application is connected to internet
     public boolean isConnectedToInternet(){
 
         ConnectivityManager connectivity = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -108,23 +110,25 @@ public class ForgotPassword extends AppCompatActivity {
         return false;
     }
 
-
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
 
+    // Checks if edit text is empty or not
     boolean isEmpty(EditText text){
 
         CharSequence input = text.getText().toString();
         return TextUtils.isEmpty(input);
     }
 
+    // Validates edit text with email address pattern
     boolean isEmail(EditText text){
 
         CharSequence input = text.getText().toString();
         return (!TextUtils.isEmpty(input) && Patterns.EMAIL_ADDRESS.matcher(input).matches());
     }
 
+    // Validates email address with appropriate messages
     private boolean validateCredentials()
     {
         if(isEmpty(fp_email)){

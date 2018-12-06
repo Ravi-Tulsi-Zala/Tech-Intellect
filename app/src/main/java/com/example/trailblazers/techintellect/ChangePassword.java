@@ -54,8 +54,10 @@ public class ChangePassword extends AppCompatActivity {
 
         guestError = findViewById(R.id.guestError);
 
+        // Gets current user's data
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+        // checks for guest user and make necessary changes if found
         if(user != null){
             guestError.setText("");
         }
@@ -91,9 +93,9 @@ public class ChangePassword extends AppCompatActivity {
 
                     if (validateCredentials()) {
 
-                        if (newPassword.equals(confirmPassword)) {
+                        if (newPassword.equals(confirmPassword)) {                  // Checks if new password and confirm password fields have same value
 
-                            AuthCredential credential = EmailAuthProvider.getCredential(email, password);
+                            AuthCredential credential = EmailAuthProvider.getCredential(email, password);           // Re-authentic user with existing password and email
                             user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
 
@@ -103,7 +105,7 @@ public class ChangePassword extends AppCompatActivity {
 
                                         user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
+                                            public void onComplete(@NonNull Task<Void> task) {             // updates password after re-authenticating user
 
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(getApplicationContext(), "Password updated", Toast.LENGTH_SHORT).show();
@@ -133,6 +135,7 @@ public class ChangePassword extends AppCompatActivity {
 
     }
 
+    // Adds back button to the screen
     public boolean onOptionsItemSelected(MenuItem mItem){
 
         switch (mItem.getItemId()) {
@@ -148,6 +151,7 @@ public class ChangePassword extends AppCompatActivity {
         return true;
     }
 
+    // Checks if application is connected to internet
     public boolean isConnectedToInternet(){
 
         ConnectivityManager connectivity = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -171,11 +175,7 @@ public class ChangePassword extends AppCompatActivity {
         return false;
     }
 
-    boolean isEmpty(EditText text){
-        CharSequence input = text.getText().toString();
-        return TextUtils.isEmpty(input);
-    }
-
+    // Validates given edit text fields if empty or not with appropriate messages
     private boolean validateCredentials()
     {
 
@@ -195,6 +195,12 @@ public class ChangePassword extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    // Checks edit text is empty or not
+    boolean isEmpty(EditText text){
+        CharSequence input = text.getText().toString();
+        return TextUtils.isEmpty(input);
     }
 
 }
