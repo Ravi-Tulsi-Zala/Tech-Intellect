@@ -1,4 +1,3 @@
-
 # Tech Intellect
 ## Team Members
 #### Smit Saraiya (B00811636, sm252977@dal.ca) 
@@ -146,4 +145,5 @@ A learning quiz application with login and registration module. The application 
 ## Sources
 
 [1]"Login and registration with user details using firebase in Android studio | 2017 latest", YouTube, 2018. [Online]. Available: https://www.youtube.com/watch?v=VFS-wfz9Nb4&t=859s. 
+
 [2]T. San, "Android Firebase: User Registration and Login with email and password", YouTube, 2018. [Online]. Available: https://www.youtube.com/watch?v=xt9elnnUGRw&t=1279s.
