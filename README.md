@@ -144,12 +144,6 @@ A learning quiz application with login and registration module. The application 
  2. The application will repeat the wrongly answered questions to users by using a repetition algorithm. In this way, users can learn from their mistakes easily **[Not implemented]**.
 
 ## Sources
-What to include in your project sources:
-- Stock images
-- Design guides
-- Programming tutorials
-- Research material
-- Android libraries
-- Everything listed on the Dalhousie Plagiarism and Cheating pages(https://www.dal.ca/dept/university_secretariat/academic-integrity/plagiarism-cheating.html)
 
-[1] "Java (programming language)", En.wikipedia.org, 2018. [Online]. Available: https://en.wikipedia.org/wiki/Java_(programming_language).
+[1]"Login and registration with user details using firebase in Android studio | 2017 latest", YouTube, 2018. [Online]. Available: https://www.youtube.com/watch?v=VFS-wfz9Nb4&t=859s. 
+[2]T. San, "Android Firebase: User Registration and Login with email and password", YouTube, 2018. [Online]. Available: https://www.youtube.com/watch?v=xt9elnnUGRw&t=1279s.
